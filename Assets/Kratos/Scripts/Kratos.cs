@@ -48,19 +48,18 @@ public class Kratos : MonoBehaviour {
 
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
-                translate_x = -walkSpeed;
+                transform.Rotate(new Vector3(0, -3f, 0));
                 anim.SetBool("Right_Walking", false);
                 anim.SetBool("Left_Walking", true);
             }
             else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
-                translate_x = walkSpeed;
+                transform.Rotate(new Vector3(0, 3f, 0));
                 anim.SetBool("Right_Walking", true);
                 anim.SetBool("Left_Walking", false);
             }
             else
             {
-                translate_x = 0;
                 anim.SetBool("Right_Walking", false);
                 anim.SetBool("Left_Walking", false);
             }
