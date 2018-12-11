@@ -25,7 +25,7 @@ public class HandleMusicChanges : MonoBehaviour {
             walkingMusic.Stop();
             fastPacedMusic.Stop();
          }
-         else if (sceneName == "Level1Scene" || sceneName == "Level2Scene")
+         else if (sceneName == "GameScene")
          {
             slowPacedMusic.Stop();
             walkingMusic.Play();
