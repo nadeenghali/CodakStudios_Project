@@ -8,13 +8,11 @@ public class CameraControl : MonoBehaviour {
 
     void Start()
     {
-        cameraLoc = new Vector3(kratos.transform.position.x, kratos.transform.position.y + 3f , kratos.transform.position.z-3.5f);
     }
 
-    void LateUpdate()
+    void FixedUpdate()
     {
-        cameraLoc = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * 4.5f, Vector3.up) * cameraLoc;
-        this.transform.position = kratos.transform.position + cameraLoc;
-        this.transform.LookAt(new Vector3(kratos.transform.position.x, 2f , kratos.transform.position.z));
+        this.transform.RotateAround(new Vector3(kratos.transform.position.x, kratos.transform.position.y + 2f, kratos.transform.position.z), new Vector3(0, kratos.transform.position.y, 0), Input.GetAxis("Mouse X") * 3f);
+        this.transform.LookAt(new Vector3(kratos.transform.position.x, kratos.transform.position.y + 1.5f, kratos.transform.position.z));
     }
 }
