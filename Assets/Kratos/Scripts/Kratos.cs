@@ -11,8 +11,8 @@ public class Kratos : MonoBehaviour {
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
-        runSpeed = 0.1f;
-        walkSpeed = 0.05f;
+        runSpeed = 0.2f;
+        walkSpeed = 0.1f;
     }
 	
 	// Update is called once per frame
@@ -51,15 +51,35 @@ public class Kratos : MonoBehaviour {
                 transform.Rotate(new Vector3(0, -3f, 0));
                 anim.SetBool("Right_Walking", false);
                 anim.SetBool("Left_Walking", true);
+                anim.SetBool("Walk_Forward", false);
+                anim.SetBool("Walk_Back", false);
+
+                anim.SetBool("Run_Forward", false);
+                anim.SetBool("Run_Back", false);
+
             }
             else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
                 transform.Rotate(new Vector3(0, 3f, 0));
                 anim.SetBool("Right_Walking", true);
                 anim.SetBool("Left_Walking", false);
+                anim.SetBool("Walk_Forward", false);
+                anim.SetBool("Walk_Back", false);
+
+                anim.SetBool("Run_Forward", false);
+                anim.SetBool("Run_Back", false);
+
             }
             else
             {
+
+                anim.SetBool("Walk_Forward", false);
+                anim.SetBool("Walk_Back", false);
+
+                anim.SetBool("Run_Forward", false);
+                anim.SetBool("Run_Back", false);
+
+
                 anim.SetBool("Right_Walking", false);
                 anim.SetBool("Left_Walking", false);
             }
@@ -74,25 +94,43 @@ public class Kratos : MonoBehaviour {
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             {
                 translate_z = walkSpeed;
-                anim.SetBool("Walk_Back", false);
                 anim.SetBool("Walk_Forward", true);
+                anim.SetBool("Walk_Back", false);
+
                 anim.SetBool("Run_Forward", false);
                 anim.SetBool("Run_Back", false);
+
+
+                anim.SetBool("Right_Walking", false);
+                anim.SetBool("Left_Walking", false);
+
             }
             else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
             {
                 translate_z = -walkSpeed;
                 anim.SetBool("Walk_Forward", false);
                 anim.SetBool("Walk_Back", true);
+
                 anim.SetBool("Run_Forward", false);
                 anim.SetBool("Run_Back", false);
+
+
+                anim.SetBool("Right_Walking", false);
+                anim.SetBool("Left_Walking", false);
             }
             else
             {
                 translate_z = 0;
                 anim.SetBool("Walk_Forward", false);
                 anim.SetBool("Walk_Back", false);
-            }
+
+                anim.SetBool("Run_Forward", false);
+                anim.SetBool("Run_Back", false);
+
+
+                anim.SetBool("Right_Walking", false);
+                anim.SetBool("Left_Walking", false);
+            }   
         }
 
         //Running
@@ -103,24 +141,41 @@ public class Kratos : MonoBehaviour {
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             {
                 translate_z = runSpeed;
-                anim.SetBool("Run_Back", false);
-                anim.SetBool("Run_Forward", true);
                 anim.SetBool("Walk_Forward", false);
                 anim.SetBool("Walk_Back", false);
+
+                anim.SetBool("Run_Forward", true);
+                anim.SetBool("Run_Back", false);
+
+
+                anim.SetBool("Right_Walking", false);
+                anim.SetBool("Left_Walking", false);
             }
             else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
             {
                 translate_z = -runSpeed;
-                anim.SetBool("Run_Forward", false);
-                anim.SetBool("Run_Back", true);
                 anim.SetBool("Walk_Forward", false);
                 anim.SetBool("Walk_Back", false);
+
+                anim.SetBool("Run_Forward", false);
+                anim.SetBool("Run_Back", true);
+
+
+                anim.SetBool("Right_Walking", false);
+                anim.SetBool("Left_Walking", false);
             }
             else
             {
                 translate_z = 0;
+                anim.SetBool("Walk_Forward", false);
+                anim.SetBool("Walk_Back", false);
+
                 anim.SetBool("Run_Forward", false);
                 anim.SetBool("Run_Back", false);
+
+
+                anim.SetBool("Right_Walking", false);
+                anim.SetBool("Left_Walking", false);
             }
         }         
 

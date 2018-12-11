@@ -777,10 +777,7 @@ GameObject:
   - component: {fileID: 95582522796775184}
   - component: {fileID: 114640861453598494}
   - component: {fileID: 54792714876687356}
-  - component: {fileID: 64928384968154354}
-  - component: {fileID: 64437133642322378}
-  - component: {fileID: 64159146252157164}
-  - component: {fileID: 64768417555237614}
+  - component: {fileID: 65558172233608428}
   m_Layer: 0
   m_Name: Custom_Kratos
   m_TagString: Untagged
@@ -1087,6 +1084,7 @@ GameObject:
   - component: {fileID: 33381648590943702}
   - component: {fileID: 23908300285628702}
   - component: {fileID: 65363123946602166}
+  - component: {fileID: 64462619956362514}
   m_Layer: 0
   m_Name: Axe
   m_TagString: Untagged
@@ -1945,9 +1943,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1469615601979548}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 100.00003, y: 100, z: 100.00003}
   m_Children:
   - {fileID: 4965494465284100}
   - {fileID: 4535011041841368}
@@ -2424,7 +2422,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1053029005963096}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.02, z: -0.0365}
+  m_LocalPosition: {x: 0, y: 0.02, z: -0.03}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children: []
   m_Father: {fileID: 4346876233482996}
@@ -2911,12 +2909,12 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!64 &64159146252157164
+--- !u!64 &64462619956362514
 MeshCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1469615601979548}
+  m_GameObject: {fileID: 1707492566789954}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -2924,49 +2922,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300034, guid: b8922329c4ad2dc4ca6a4981fc55a8cb, type: 3}
---- !u!64 &64437133642322378
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1469615601979548}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300044, guid: b8922329c4ad2dc4ca6a4981fc55a8cb, type: 3}
---- !u!64 &64768417555237614
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1469615601979548}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300036, guid: b8922329c4ad2dc4ca6a4981fc55a8cb, type: 3}
---- !u!64 &64928384968154354
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1469615601979548}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: b8922329c4ad2dc4ca6a4981fc55a8cb, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 535ede9131ace994ebab159e9650b9cf, type: 3}
 --- !u!65 &65363123946602166
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -2975,10 +2931,22 @@ BoxCollider:
   m_GameObject: {fileID: 1707492566789954}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.73600584, y: 0.17080535, z: 1.4758197}
   m_Center: {x: 1.1751757, y: 1.6666709, z: 0.22080079}
+--- !u!65 &65558172233608428
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1469615601979548}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0057822387, y: 0.023482341, z: 0.005778997}
+  m_Center: {x: 0, y: 0.012149568, z: 0}
 --- !u!81 &81475453014790726
 AudioListener:
   m_ObjectHideFlags: 1
