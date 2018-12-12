@@ -7,7 +7,7 @@ public class EnemyLogic : MonoBehaviour {
 
 	// Use this for initialization
 	private NavMeshAgent agent;
-	public Transform goal;
+	//public Transform goal;
 
     public static bool canAttack=false;
 
@@ -16,8 +16,8 @@ public class EnemyLogic : MonoBehaviour {
     public float heavyDamage;
 
     public void Start () {
-		agent= GetComponent<UnityEngine.AI.NavMeshAgent>();
-		SetTarget(goal.position);
+		agent= GetComponent<NavMeshAgent>();
+		//SetTarget(goal.position);
         enemyHealthPoints = 50;
         lightDamage = 10;
         heavyDamage = 30;
@@ -25,14 +25,15 @@ public class EnemyLogic : MonoBehaviour {
 
     // Update is called once per frame
     public void Update () {
-        if (transform.position.x > goal.position.x - 5 && transform.position.x < goal.position.x + 5)
-            canAttack = true;
-        else
-            canAttack = false;
+        //if (transform.position.x > goal.position.x - 5 && transform.position.x < goal.position.x + 5)
+          //  canAttack = true;
+        //else
+          //  canAttack = false;
 
         if(enemyHealthPoints == 0)
         {
-            DestroyEnemy();
+            //die anim then call DestroyEnemy()
+            Invoke("DestroyEnemy", 5);
         }
 	}
 
@@ -48,41 +49,42 @@ public class EnemyLogic : MonoBehaviour {
 
         if (!KratosLogic.isBlocking)
         {
-            // Kratos attacks enemy
             if (other.CompareTag("Axe"))
             {
-                if (KratosLogic.attackSkill)
+                // Kratos attacks enemy
+                if ((KratosLogic.lightAttack == true || KratosLogic.heavyAttack == true))
                 {
-                    heavyDamage = heavyDamage * 1.1f;
-                    lightDamage = lightDamage * 1.1f;
-                    KratosLogic.attackSkill = false;
-                }
-
-                if (KratosLogic.rageMode)
-                    i = 2;
-
-                if (KratosLogic.heavyAttack)
-                    damage = heavyDamage * i;
-                else
-                    damage = lightDamage * i;
-
-                enemyHealthPoints = enemyHealthPoints - damage;
-
-                if (!KratosLogic.rageMode)
-                {
-                    KratosLogic.rage = KratosLogic.rage + 20;
-                    if (KratosLogic.rage > KratosLogic.maxRage)
+                    if (KratosLogic.attackSkill)
                     {
-                        KratosLogic.rage = KratosLogic.maxRage;
+                        heavyDamage = heavyDamage * 1.1f;
+                        lightDamage = lightDamage * 1.1f;
+                        KratosLogic.attackSkill = false;
+                    }
+
+                    if (KratosLogic.rageMode)
+                        i = 2;
+
+                    if (KratosLogic.heavyAttack)
+                        damage = heavyDamage * i;
+                    else
+                        damage = lightDamage * i;
+
+                    enemyHealthPoints = enemyHealthPoints - damage;
+
+                    if (!KratosLogic.rageMode)
+                    {
+                        KratosLogic.rage = KratosLogic.rage + 20;
+                        if (KratosLogic.rage > KratosLogic.maxRage)
+                        {
+                            KratosLogic.rage = KratosLogic.maxRage;
+                        }
                     }
                 }
-
             }
 
             // Enemy attacks kratos
             if (other.CompareTag("Kratos"))
             {
-
                 KratosLogic.healthPoints = KratosLogic.healthPoints - 10;
                 KratosLogic.gotHit = true;
                 if (KratosLogic.healthPoints < 0)

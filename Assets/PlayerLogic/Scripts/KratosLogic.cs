@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class KratosLogic : MonoBehaviour {
 
-    public Canvas gameOverCanvas;
+   // public Canvas gameOverCanvas;
 
     public static int level;
 
@@ -22,6 +22,7 @@ public class KratosLogic : MonoBehaviour {
 
     public static bool canRageAttack;
 
+    public static bool lightAttack;
     public static bool heavyAttack;
     public static bool rageMode;
 
@@ -51,6 +52,7 @@ public class KratosLogic : MonoBehaviour {
 
         canRageAttack = false;
 
+        lightAttack = false;
         heavyAttack = false;
         rageMode = false;
 
@@ -69,8 +71,8 @@ public class KratosLogic : MonoBehaviour {
         if (healthPoints == 0)
         {
             gotKilled = true;
-            //wait 5 seconds
-            GameOver();
+            //wait 5 seconds to call GameOver();
+            Invoke("GameOver", 5);    
         }
 
         if(XP == maxXP)
@@ -99,14 +101,16 @@ public class KratosLogic : MonoBehaviour {
         if (healthSkill)
         {
             healthPoints = healthPoints * 1.1f;
+            if (healthPoints > 100)
+                healthPoints = 100;
             healthSkill = false;
         }
     }
 
     public void GameOver()
     {
-        gameOverCanvas.GetComponent<Canvas>().enabled = true;
-        this.GetComponent<Canvas>().enabled = false;
+        //gameOverCanvas.GetComponent<Canvas>().enabled = true;
+        //this.GetComponent<Canvas>().enabled = false;
     }
 
     public void NextLevel()
@@ -126,6 +130,7 @@ public class KratosLogic : MonoBehaviour {
 
         canRageAttack = false;
 
+        lightAttack = false;
         heavyAttack = false;
         rageMode = false;
 
@@ -138,12 +143,12 @@ public class KratosLogic : MonoBehaviour {
         isBlocking = false;
     }
 
-    public void OnTriggerEnter(Collider other)
+    /*public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("HealthChest"))
         {
             //chest.open(); flag -- shazly
             healthPoints = 100;
         }
-    }
+    }*/
 }

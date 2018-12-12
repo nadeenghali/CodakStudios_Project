@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Kratos : MonoBehaviour
 {
-
     Animator anim;
     public static float runSpeed;
     public static float walkSpeed;
@@ -216,10 +215,12 @@ public class Kratos : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             anim.SetBool("Attack_Horizontal", true);
+            KratosLogic.lightAttack = true;
         }
         else if (!Input.GetMouseButton(0))
         {
             anim.SetBool("Attack_Horizontal", false);
+            KratosLogic.lightAttack = false;
         }
 
         //Rage

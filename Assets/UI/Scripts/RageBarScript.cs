@@ -5,6 +5,13 @@ using UnityEngine.UI;
 
 public class RageBarScript : MonoBehaviour {
 
+    float myRage;
+    float myMaxRage;
+    float myMinRage;
+
+    float difference;
+
+    //CHEAT KEYS
     float xPos;
     float w;
 
@@ -13,6 +20,14 @@ public class RageBarScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
+        myRage = KratosLogic.rage;
+        myMaxRage = KratosLogic.maxRage;
+        myMinRage = KratosLogic.minRage;
+
+        difference = 0;
+
+        //CHEAT KEYS
         xPos = this.GetComponent<RectTransform>().position.x;
         w = this.GetComponent<RectTransform>().rect.width;
 
@@ -24,7 +39,7 @@ public class RageBarScript : MonoBehaviour {
     void Update()
     {
 
-        xPos = this.GetComponent<RectTransform>().position.x;
+        //CHEAT KEYS
         w = this.GetComponent<RectTransform>().rect.width;
 
         //increase health
