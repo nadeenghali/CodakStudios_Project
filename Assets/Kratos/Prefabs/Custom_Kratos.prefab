@@ -387,7 +387,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4736875789027118}
-  - component: {fileID: 136190171337231626}
+  - component: {fileID: 65175640672845374}
   m_Layer: 0
   m_Name: mixamorig:Hips
   m_TagString: Kratos
@@ -557,6 +557,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4275248522838478}
   - component: {fileID: 137159850019383604}
+  - component: {fileID: 135791207704180438}
   m_Layer: 0
   m_Name: Object001
   m_TagString: Untagged
@@ -2953,6 +2954,18 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 535ede9131ace994ebab159e9650b9cf, type: 3}
+--- !u!65 &65175640672845374
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1195102981464882}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.004, y: 0.02, z: 0.004}
+  m_Center: {x: 0, y: -0.002, z: 0}
 --- !u!65 &65363123946602166
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -3068,19 +3081,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1e5d00c319fdeb4badcc78042d37d6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!136 &136190171337231626
-CapsuleCollider:
+--- !u!135 &135791207704180438
+SphereCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1195102981464882}
+  m_GameObject: {fileID: 1371029900947216}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.003616994
-  m_Height: 0.0251659
-  m_Direction: 1
-  m_Center: {x: -3.518712e-13, y: -0.002323655, z: -1.383118e-14}
+  serializedVersion: 2
+  m_Radius: 0.0023946734
+  m_Center: {x: -0.0000045861816, y: 0.0024846678, z: 0.00019132427}
 --- !u!137 &137010804629030490
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
