@@ -212,6 +212,7 @@ GameObject:
   - component: {fileID: 134770816}
   - component: {fileID: 134770815}
   - component: {fileID: 134770822}
+  - component: {fileID: 134770817}
   m_Layer: 5
   m_Name: UpgradeCanvas
   m_TagString: Untagged
@@ -253,6 +254,19 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 134770814}
   m_CullTransparentMesh: 0
+--- !u!114 &134770817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 134770814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f3232b31e40b78429ae8ec204ff0b41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameScreenSkills: {fileID: 1795132942}
+  upgradeScreenSkills: {fileID: 2069996379}
 --- !u!114 &134770818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,7 +310,7 @@ Canvas:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 134770814}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -993,6 +1007,7 @@ GameObject:
   - component: {fileID: 504863717}
   - component: {fileID: 504863715}
   - component: {fileID: 504863716}
+  - component: {fileID: 504863718}
   m_Layer: 5
   m_Name: GameCanvas
   m_TagString: Untagged
@@ -1006,7 +1021,7 @@ Canvas:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 504863713}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -1051,6 +1066,19 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 504863713}
   m_CullTransparentMesh: 0
+--- !u!114 &504863718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 504863713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f3232b31e40b78429ae8ec204ff0b41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameScreenSkills: {fileID: 1795132942}
+  upgradeScreenSkills: {fileID: 2069996379}
 --- !u!114 &504863719
 MonoBehaviour:
   m_ObjectHideFlags: 0
