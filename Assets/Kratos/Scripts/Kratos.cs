@@ -2,21 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Kratos : MonoBehaviour {
-
+public class Kratos : MonoBehaviour
+{
     Animator anim;
     public static float runSpeed;
     public static float walkSpeed;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         anim = GetComponent<Animator>();
         runSpeed = 0.1f;
         walkSpeed = 0.07f;
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
 
         float translate_z = 0;
         float translate_x = 0;
@@ -87,8 +89,8 @@ public class Kratos : MonoBehaviour {
 
 
         //Waking
-        if ((!(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))) && 
-            (Input.GetKey(KeyCode.W)|| Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow)))
+        if ((!(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))) &&
+            (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow)))
         {
 
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
@@ -130,7 +132,7 @@ public class Kratos : MonoBehaviour {
 
                 anim.SetBool("Right_Walking", false);
                 anim.SetBool("Left_Walking", false);
-            }   
+            }
         }
 
         //Running
@@ -177,25 +179,28 @@ public class Kratos : MonoBehaviour {
                 anim.SetBool("Right_Walking", false);
                 anim.SetBool("Left_Walking", false);
             }
-        }         
+        }
 
-        //Die: to be changed
-        if (Input.GetKeyDown(KeyCode.X))
+        //die
+        if (KratosLogic.gotKilled && KratosLogic.isDead)
         {
             anim.SetBool("Die", true);
+            KratosLogic.gotKilled = false;
         }
-        else if (!Input.GetKeyDown(KeyCode.X))
+        else if (!KratosLogic.gotKilled)
         {
             anim.SetBool("Die", false);
         }
 
-        //Hit React: to be changed
-        if (Input.GetKeyDown(KeyCode.H))
+
+        //got hit
+        if (KratosLogic.gotHit && !KratosLogic.gotKilled) 
         {
             anim.SetBool("Hit_React", true);
+            KratosLogic.gotHit = false;
         }
-        else if (!Input.GetKeyDown(KeyCode.H))
-        {
+        else if (!KratosLogic.gotHit) 
+            {
             anim.SetBool("Hit_React", false);
         }
 
@@ -203,26 +208,31 @@ public class Kratos : MonoBehaviour {
         if (Input.GetMouseButton(1))
         {
             anim.SetBool("Attack_360", true);
+            KratosLogic.heavyAttack = true;
         }
         else if (!Input.GetMouseButton(1))
         {
             anim.SetBool("Attack_360", false);
+            KratosLogic.heavyAttack = false;
         }
 
         //Light Attack
         if (Input.GetMouseButton(0))
         {
             anim.SetBool("Attack_Horizontal", true);
+            KratosLogic.lightAttack = true;
         }
         else if (!Input.GetMouseButton(0))
         {
             anim.SetBool("Attack_Horizontal", false);
+            KratosLogic.lightAttack = false;
         }
 
         //Rage
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && KratosLogic.canRageAttack)
         {
             anim.SetBool("Rage", true);
+            KratosLogic.rageMode = true;
         }
         else if (!Input.GetKeyDown(KeyCode.R))
         {
@@ -243,10 +253,12 @@ public class Kratos : MonoBehaviour {
         if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
         {
             anim.SetBool("Block", true);
+            KratosLogic.isBlocking = true;
         }
         else if (!(Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.RightControl)))
         {
             anim.SetBool("Block", false);
+            KratosLogic.isBlocking = false;
         }
 
         //Not Walking nor Running

@@ -5,23 +5,32 @@ using UnityEngine;
 
 public class KratosLogic : MonoBehaviour {
 
-    public Canvas gameOverCanvas;
+   // public Canvas gameOverCanvas;
 
     public static int level;
 
-    public static double healthPoints;
-    public static double XP;
-    public static double rage;
-    public static double skillPoints;
+    public static float healthPoints;
+    public static float XP;
+    public static float rage;
+    public static float skillPoints;
 
-    public static int maxHealthPoints;
-    public static int maxXP;
-    public static int maxRage;
+    public static float maxHealthPoints;
+    public static float maxXP;
+    public static float maxRage;
 
-    public static int minRage;
+    public static float minRage;
 
+    public static bool canRageAttack;
+
+    public static bool lightAttack;
     public static bool heavyAttack;
-    public static bool rageAttack;
+    public static bool rageMode;
+
+    public static bool isBlocking;
+    public static bool gotHit;
+    public static bool gotKilled;
+    public static bool isDead;
+
     //Skills
     public static bool movementSkill;
     public static bool attackSkill;
@@ -42,19 +51,30 @@ public class KratosLogic : MonoBehaviour {
 
         minRage = 0;
 
+        canRageAttack = false;
+
+        lightAttack = false;
         heavyAttack = false;
-        rageAttack = false;
+        rageMode = false;
 
         attackSkill = false;
         movementSkill = false;
         healthSkill = false;
+
+        gotHit = false;
+        gotKilled = false;
+        isBlocking = false;
+        isDead = false;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (healthPoints == 0)
+        if (healthPoints == 0 && isDead == false)
         {
-            GameOver();
+            gotKilled = true;
+            isDead = true;
+            //wait 5 seconds to call GameOver();
+            Invoke("GameOver", 5);    
         }
 
         if(XP == maxXP)
@@ -64,38 +84,40 @@ public class KratosLogic : MonoBehaviour {
 
         if(rage == maxRage)
         {
-            rageAttack = true;
+            canRageAttack = true;
         }
 
-        if(rage == minRage)
+        if(rage < maxRage)
         {
-            rageAttack = false;
+            canRageAttack = false;
         }
+
         if (movementSkill)
         {
-            //khali speeds public static in Kratos
-            //Kratos.walkSpeed = Kratos.walkSpeed * 0.1f;
-            //Kratos.runSpeed = Kratos.runSpeed * 0.1f;
+            Kratos.walkSpeed = Kratos.walkSpeed * 1.1f;
+            Kratos.runSpeed = Kratos.runSpeed * 1.1f;
 
             movementSkill = false;
         }
 
         if (healthSkill)
         {
-            healthPoints *= 0.1f;
+            healthPoints = healthPoints * 1.1f;
+            if (healthPoints > 100)
+                healthPoints = 100;
             healthSkill = false;
         }
     }
 
     public void GameOver()
     {
-        gameOverCanvas.GetComponent<Canvas>().enabled = true;
-        this.GetComponent<Canvas>().enabled = false;
+        //gameOverCanvas.GetComponent<Canvas>().enabled = true;
+        //this.GetComponent<Canvas>().enabled = false;
     }
 
     public void NextLevel()
     {
-        // Move player to next level (physically)
+        // Move player to next level (physically) -- shazly
 
         level = level++;
 
@@ -103,25 +125,33 @@ public class KratosLogic : MonoBehaviour {
         XP = 0;
         rage = 0;
 
-        //canvas text
-        skillPoints += 1;
+        // canvas text
+        skillPoints = skillPoints + 1;
 
         maxXP = maxXP * 2;
 
+        canRageAttack = false;
+
+        lightAttack = false;
         heavyAttack = false;
-        rageAttack = false;
+        rageMode = false;
 
         attackSkill = false;
         movementSkill = false;
         healthSkill = false;
+
+        gotHit = false;
+        gotKilled = false;
+        isBlocking = false;
+        isDead = false;
     }
 
-    public void OnTriggerEnter(Collider other)
+    /*public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("HealthChest"))
         {
-            //chest.open(); flag
+            //chest.open(); flag -- shazly
             healthPoints = 100;
         }
-    }
+    }*/
 }
