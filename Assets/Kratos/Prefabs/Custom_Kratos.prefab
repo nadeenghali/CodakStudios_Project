@@ -780,7 +780,7 @@ GameObject:
   - component: {fileID: 54792714876687356}
   m_Layer: 0
   m_Name: Custom_Kratos
-  m_TagString: Untagged
+  m_TagString: Kratos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
