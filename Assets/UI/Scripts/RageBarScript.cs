@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class RageBarScript : MonoBehaviour {
 
     float myRage;
-    float myMaxRage;
     float myMinRage;
 
     float difference;
+    int counter;
 
     //CHEAT KEYS
     float xPos;
@@ -22,10 +22,10 @@ public class RageBarScript : MonoBehaviour {
     void Start () {
 
         myRage = KratosLogic.rage;
-        myMaxRage = KratosLogic.maxRage;
         myMinRage = KratosLogic.minRage;
 
         difference = 0;
+        counter = 0;
 
         //CHEAT KEYS
         xPos = this.GetComponent<RectTransform>().position.x;
@@ -38,6 +38,35 @@ public class RageBarScript : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if (KratosLogic.rageMode)
+        {
+            difference = 5;
+            difference = -(difference/2);
+
+            if (counter < 20)
+            {
+                Invoke("InRageModeDecrement", 1);
+                counter++;
+            }
+
+            if(myRage == 0)
+            {
+                KratosLogic.rage = 0;
+                KratosLogic.rageMode = false;
+            }
+        }
+        else
+        {
+            difference = myRage - KratosLogic.rage;
+            if (difference != 0)
+            {
+                difference = -(difference / 2);
+                this.GetComponent<RectTransform>().sizeDelta = new Vector2(KratosLogic.rage, this.GetComponent<RectTransform>().sizeDelta.y);
+                this.GetComponent<RectTransform>().Translate(new Vector3(difference, 0, 0));
+            }
+            myRage = KratosLogic.rage;
+        }
+
 
         //CHEAT KEYS
         w = this.GetComponent<RectTransform>().rect.width;
@@ -79,5 +108,14 @@ public class RageBarScript : MonoBehaviour {
                 this.GetComponent<RectTransform>().Translate(new Vector3(xPos, 0, 0));
             }
         }
+    }
+
+    public void InRageModeDecrement()
+    {
+        myRage = myRage - difference;
+        KratosLogic.rage = myRage;
+
+        this.GetComponent<RectTransform>().sizeDelta = new Vector2(KratosLogic.rage, this.GetComponent<RectTransform>().sizeDelta.y);
+        this.GetComponent<RectTransform>().Translate(new Vector3(difference, 0, 0));
     }
 }
