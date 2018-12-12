@@ -181,18 +181,23 @@ public class Kratos : MonoBehaviour
             }
         }
 
-        if (KratosLogic.gotKilled)
+        //die
+        if (KratosLogic.gotKilled && KratosLogic.isDead)
         {
             anim.SetBool("Die", true);
+            KratosLogic.gotKilled = false;
         }
         else if (!KratosLogic.gotKilled)
         {
             anim.SetBool("Die", false);
         }
 
+
+        //got hit
         if (KratosLogic.gotHit && !KratosLogic.gotKilled) 
-            {
+        {
             anim.SetBool("Hit_React", true);
+            KratosLogic.gotHit = false;
         }
         else if (!KratosLogic.gotHit) 
             {
