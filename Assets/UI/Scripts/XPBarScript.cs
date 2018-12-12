@@ -41,10 +41,13 @@ public class XPBarScript : MonoBehaviour {
     {
 
         difference = myXP - KratosLogic.XP;
-        difference = -(difference / 2);
+        if (difference != 0)
+        {
+            difference = -(difference / 2);
 
-        this.GetComponent<RectTransform>().sizeDelta = new Vector2((KratosLogic.XP * percentage), this.GetComponent<RectTransform>().sizeDelta.y);
-        this.GetComponent<RectTransform>().Translate(new Vector3((difference * percentage), 0, 0));
+            this.GetComponent<RectTransform>().sizeDelta = new Vector2((KratosLogic.XP * percentage), this.GetComponent<RectTransform>().sizeDelta.y);
+            this.GetComponent<RectTransform>().Translate(new Vector3((difference * percentage), 0, 0));
+        }
 
         myXP = KratosLogic.XP;
         myMaxXP = KratosLogic.maxXP;
