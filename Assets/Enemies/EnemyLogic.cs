@@ -11,12 +11,16 @@ public class EnemyLogic : MonoBehaviour {
 
     public static bool canAttack=false;
 
-    public static double enemyHealthPoints;
+    public static float enemyHealthPoints;
+    public float lightDamage;
+    public float heavyDamage;
 
     public void Start () {
 		agent= GetComponent<UnityEngine.AI.NavMeshAgent>();
 		SetTarget(goal.position);
         enemyHealthPoints = 50;
+        lightDamage = 10;
+        heavyDamage = 30;
     }
 
     // Update is called once per frame
@@ -39,41 +43,61 @@ public class EnemyLogic : MonoBehaviour {
 
     public void OnTriggerEnter(Collider other)
     {
-        double damage;
+        float damage;
         int i = 1;
-        // Kratos attacks enemy
-        if (other.CompareTag("Axe"))
+
+        if (!KratosLogic.isBlocking)
         {
-            if (KratosLogic.rageAttack)
-                i = 2;
-
-            if (KratosLogic.heavyAttack)
-                damage = 30*i;
-            else
-                damage = 10*i;
-
-            if (KratosLogic.attackSkill)
+            // Kratos attacks enemy
+            if (other.CompareTag("Axe"))
             {
-                damage = damage * 0.1;
-                KratosLogic.attackSkill = false;
+                if (KratosLogic.attackSkill)
+                {
+                    heavyDamage = heavyDamage * 1.1f;
+                    lightDamage = lightDamage * 1.1f;
+                    KratosLogic.attackSkill = false;
+                }
+
+                if (KratosLogic.rageMode)
+                    i = 2;
+
+                if (KratosLogic.heavyAttack)
+                    damage = heavyDamage * i;
+                else
+                    damage = lightDamage * i;
+
+                enemyHealthPoints = enemyHealthPoints - damage;
+
+                if (!KratosLogic.rageMode)
+                {
+                    KratosLogic.rage = KratosLogic.rage + 20;
+                    if (KratosLogic.rage > KratosLogic.maxRage)
+                    {
+                        KratosLogic.rage = KratosLogic.maxRage;
+                    }
+                }
+
             }
-               
-            enemyHealthPoints = enemyHealthPoints - damage;
 
-            if (!KratosLogic.rageAttack)
-                KratosLogic.rage = KratosLogic.rage + 20;
-        }
+            // Enemy attacks kratos
+            if (other.CompareTag("Kratos"))
+            {
 
-        // Enemy attacks kratos
-        if (other.CompareTag("Kratos"))
-        {
-            KratosLogic.healthPoints = KratosLogic.healthPoints - 10;
-        }
+                KratosLogic.healthPoints = KratosLogic.healthPoints - 10;
+                KratosLogic.gotHit = true;
+                if (KratosLogic.healthPoints < 0)
+                {
+                    KratosLogic.healthPoints = 0;
+                }
+            }
+        } 
     }
 
     public void DestroyEnemy()
     {
         Destroy(this.gameObject);
         KratosLogic.XP = KratosLogic.XP + 50;
+        if (KratosLogic.XP > KratosLogic.maxXP)
+            KratosLogic.XP = KratosLogic.maxXP;
     }
 }

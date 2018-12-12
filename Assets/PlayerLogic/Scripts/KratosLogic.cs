@@ -9,19 +9,26 @@ public class KratosLogic : MonoBehaviour {
 
     public static int level;
 
-    public static double healthPoints;
-    public static double XP;
-    public static double rage;
-    public static double skillPoints;
+    public static float healthPoints;
+    public static float XP;
+    public static float rage;
+    public static float skillPoints;
 
-    public static int maxHealthPoints;
-    public static int maxXP;
-    public static int maxRage;
+    public static float maxHealthPoints;
+    public static float maxXP;
+    public static float maxRage;
 
-    public static int minRage;
+    public static float minRage;
+
+    public static bool canRageAttack;
 
     public static bool heavyAttack;
-    public static bool rageAttack;
+    public static bool rageMode;
+
+    public static bool isBlocking;
+    public static bool gotHit;
+    public static bool gotKilled;
+
     //Skills
     public static bool movementSkill;
     public static bool attackSkill;
@@ -42,18 +49,27 @@ public class KratosLogic : MonoBehaviour {
 
         minRage = 0;
 
+        canRageAttack = false;
+
         heavyAttack = false;
-        rageAttack = false;
+        rageMode = false;
 
         attackSkill = false;
         movementSkill = false;
         healthSkill = false;
+
+        gotHit = false;
+        gotKilled = false;
+        isBlocking = false;
+
     }
 	
 	// Update is called once per frame
 	void Update () {
         if (healthPoints == 0)
         {
+            gotKilled = true;
+            //wait 5 seconds
             GameOver();
         }
 
@@ -64,25 +80,25 @@ public class KratosLogic : MonoBehaviour {
 
         if(rage == maxRage)
         {
-            rageAttack = true;
+            canRageAttack = true;
         }
 
-        if(rage == minRage)
+        if(rage < maxRage)
         {
-            rageAttack = false;
+            canRageAttack = false;
         }
+
         if (movementSkill)
         {
-            //khali speeds public static in Kratos
-            //Kratos.walkSpeed = Kratos.walkSpeed * 0.1f;
-            //Kratos.runSpeed = Kratos.runSpeed * 0.1f;
+            Kratos.walkSpeed = Kratos.walkSpeed * 1.1f;
+            Kratos.runSpeed = Kratos.runSpeed * 1.1f;
 
             movementSkill = false;
         }
 
         if (healthSkill)
         {
-            healthPoints *= 0.1f;
+            healthPoints = healthPoints * 1.1f;
             healthSkill = false;
         }
     }
@@ -95,7 +111,7 @@ public class KratosLogic : MonoBehaviour {
 
     public void NextLevel()
     {
-        // Move player to next level (physically)
+        // Move player to next level (physically) -- shazly
 
         level = level++;
 
@@ -103,24 +119,30 @@ public class KratosLogic : MonoBehaviour {
         XP = 0;
         rage = 0;
 
-        //canvas text
-        skillPoints += 1;
+        // canvas text
+        skillPoints = skillPoints + 1;
 
         maxXP = maxXP * 2;
 
+        canRageAttack = false;
+
         heavyAttack = false;
-        rageAttack = false;
+        rageMode = false;
 
         attackSkill = false;
         movementSkill = false;
         healthSkill = false;
+
+        gotHit = false;
+        gotKilled = false;
+        isBlocking = false;
     }
 
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("HealthChest"))
         {
-            //chest.open(); flag
+            //chest.open(); flag -- shazly
             healthPoints = 100;
         }
     }
