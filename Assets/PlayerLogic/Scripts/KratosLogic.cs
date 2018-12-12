@@ -29,6 +29,7 @@ public class KratosLogic : MonoBehaviour {
     public static bool isBlocking;
     public static bool gotHit;
     public static bool gotKilled;
+    public static bool isDead;
 
     //Skills
     public static bool movementSkill;
@@ -63,14 +64,15 @@ public class KratosLogic : MonoBehaviour {
         gotHit = false;
         gotKilled = false;
         isBlocking = false;
-
+        isDead = false;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (healthPoints == 0)
+        if (healthPoints == 0 && isDead == false)
         {
             gotKilled = true;
+            isDead = true;
             //wait 5 seconds to call GameOver();
             Invoke("GameOver", 5);    
         }
@@ -141,6 +143,7 @@ public class KratosLogic : MonoBehaviour {
         gotHit = false;
         gotKilled = false;
         isBlocking = false;
+        isDead = false;
     }
 
     /*public void OnTriggerEnter(Collider other)
