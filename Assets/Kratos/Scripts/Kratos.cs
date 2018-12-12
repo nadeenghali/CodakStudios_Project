@@ -5,14 +5,14 @@ using UnityEngine;
 public class Kratos : MonoBehaviour {
 
     Animator anim;
-    float runSpeed;
-    float walkSpeed;
+    public static float runSpeed;
+    public static float walkSpeed;
 
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
-        runSpeed = 0.2f;
-        walkSpeed = 0.1f;
+        runSpeed = 0.1f;
+        walkSpeed = 0.07f;
     }
 	
 	// Update is called once per frame
