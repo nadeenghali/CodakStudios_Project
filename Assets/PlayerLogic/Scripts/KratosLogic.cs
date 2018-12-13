@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class KratosLogic : MonoBehaviour {
 
-   // public Canvas gameOverCanvas;
+    //public Canvas gameOverCanvas;
+    //public Text gameScreenSkills;
+    //public Text upgradeScreenSkills;
 
     public static int level;
 
@@ -36,6 +38,8 @@ public class KratosLogic : MonoBehaviour {
     public static bool attackSkill;
     public static bool healthSkill;
 
+    public static bool levelUp;
+
 	// Use this for initialization
 	void Start () {
         level = 1;
@@ -65,6 +69,8 @@ public class KratosLogic : MonoBehaviour {
         gotKilled = false;
         isBlocking = false;
         isDead = false;
+
+        levelUp = false;
     }
 	
 	// Update is called once per frame
@@ -77,12 +83,17 @@ public class KratosLogic : MonoBehaviour {
             Invoke("GameOver", 5);    
         }
 
-        if(XP == maxXP)
+        if (XP == maxXP)
         {
-            NextLevel();
+            LevelUp();
         }
 
-        if(rage == maxRage)
+        //if (kills 10 enemies masalan)
+        //{
+        //    NextLevel();
+        //}
+
+        if (rage == maxRage)
         {
             canRageAttack = true;
         }
@@ -97,7 +108,9 @@ public class KratosLogic : MonoBehaviour {
             Kratos.walkSpeed = Kratos.walkSpeed * 1.1f;
             Kratos.runSpeed = Kratos.runSpeed * 1.1f;
 
+            skillPoints = skillPoints - 1;
             movementSkill = false;
+            levelUp = false;
         }
 
         if (healthSkill)
@@ -105,30 +118,35 @@ public class KratosLogic : MonoBehaviour {
             healthPoints = healthPoints * 1.1f;
             if (healthPoints > 100)
                 healthPoints = 100;
+
+            skillPoints = skillPoints - 1;
             healthSkill = false;
+            levelUp = false;
         }
+
+        //gameScreenSkills.text = "Skill Points :  " + KratosLogic.skillPoints;
+        //upgradeScreenSkills.text = "Skill Points :  " + KratosLogic.skillPoints;
     }
 
     public void GameOver()
     {
+        print("Game over");
         //gameOverCanvas.GetComponent<Canvas>().enabled = true;
         //this.GetComponent<Canvas>().enabled = false;
+    }
+
+    public void LevelUp()
+    {
+        skillPoints = skillPoints + 1;
+        maxXP = maxXP * 2;
+        levelUp = true;
     }
 
     public void NextLevel()
     {
         // Move player to next level (physically) -- shazly
-
+        // Next level if what happens?? kill 10 enemies for example?
         level = level++;
-
-        healthPoints = 100;
-        XP = 0;
-        rage = 0;
-
-        // canvas text
-        skillPoints = skillPoints + 1;
-
-        maxXP = maxXP * 2;
 
         canRageAttack = false;
 
@@ -144,6 +162,8 @@ public class KratosLogic : MonoBehaviour {
         gotKilled = false;
         isBlocking = false;
         isDead = false;
+
+        levelUp = false;
     }
 
     /*public void OnTriggerEnter(Collider other)
