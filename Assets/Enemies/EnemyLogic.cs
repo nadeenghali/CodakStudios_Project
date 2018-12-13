@@ -85,7 +85,7 @@ public class EnemyLogic : MonoBehaviour {
             }
 
             // Enemy attacks kratos
-            if (other.CompareTag("Target"))
+            if (other.CompareTag("Kratos"))
             {
                 print("Kratos hit collisoion");
                 KratosLogic.healthPoints =

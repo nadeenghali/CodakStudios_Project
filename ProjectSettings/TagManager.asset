@@ -9,6 +9,13 @@ TagManager:
   - Enemy
   - HealthChest
   - Target
+  - L1W1
+  - L1W2
+  - L1W3
+  - L2W1
+  - L2W2
+  - L2W3
+  - L3
   layers:
   - Default
   - TransparentFX

@@ -4,38 +4,39 @@ using UnityEngine;
 
 public class MapListener : MonoBehaviour {
     
-    public GameObject LevelOneWaveOne;
-    public GameObject LevelOneWaveTwo;
-    public GameObject LevelOneWaveTwo_2;
+    public  GameObject LevelOneWaveOne;
+    public  GameObject LevelOneWaveTwo;
+    public  GameObject LevelOneWaveTwo_2;
 
     public GameObject LevelTwoWaveOne;
     public GameObject LevelTwoWaveTwo;
 
-    public GameObject LevelOne;
-    public GameObject LevelTwo;
+    public  GameObject LevelOne;
+    public  GameObject LevelTwo;
 
-
-    public GameObject EnemyOne;
-    public GameObject EnemyTwo;
-    public GameObject EnemyThree;
-    public GameObject EnemyFour;
+    public  GameObject EnemyOne;
+    public  GameObject EnemyTwo;
+    public  GameObject EnemyThree;
+    public  GameObject EnemyFour;
 
     private static int EnemiesKilled = 0;
     private static bool LogicUpdate = false;
 
-    private int level = 1;
-    private int wave = 1;
-    private int SpawnDelay = 7;
+    public static bool EnemiesCreate = false;
+    public static int level = 1;
+    public static int wave = 1;
+    private static int SpawnDelay = 7;
 
     // Use this for initialization
     void Start () {
-        Invoke("CallEnemies", 5);
+        
     }
 	
 	// Update is called once per frame
 	void Update () {
         KeyboardButtons();
         LevelLogic();
+        CallEnemies();
     }
 
     void KeyboardButtons()
@@ -68,8 +69,12 @@ public class MapListener : MonoBehaviour {
         }
     }
 
+    
+
     void CallEnemies()
     {
+        if (!EnemiesCreate)
+            return;
         switch (level)
         {
             case 1:
@@ -110,12 +115,16 @@ public class MapListener : MonoBehaviour {
                 }
                 break;
             case 3:
-                //CreateBossLevel();
+                LevelTwo.transform.Rotate(0.0f, -90f, 0.0f); break;
                 break;
         }
         wave++;
         if (wave == 4)
+        {
             level++;
+            wave = 1;
+        }
+        EnemiesCreate = false;
     }
 
 
@@ -126,11 +135,16 @@ public class MapListener : MonoBehaviour {
         {
             switch (EnemiesKilled)
             {
-                case 2: Invoke("CallEnemies", SpawnDelay); LevelOneWaveOne.transform.Rotate(0.0f, 90f, 0.0f); break;
-                case 4: Invoke("CallEnemies", SpawnDelay); LevelOneWaveTwo.transform.Rotate(0.0f, 90f, 0.0f); LevelOneWaveTwo_2.transform.Rotate(0.0f, 90f, 0.0f); break;
-                case 6: Invoke("CallEnemies", SpawnDelay); LevelOne.transform.Rotate(0.0f, 90f, 0.0f); break;
-                case 8: Invoke("CallEnemies", SpawnDelay); LevelTwoWaveOne.transform.Rotate(0.0f, 90f, 0.0f); break;
-                case 10: Invoke("CallEnemies", SpawnDelay); LevelTwoWaveTwo.transform.Rotate(0.0f, 90f, 0.0f); break;
+                case 2: //Invoke("CallEnemies", SpawnDelay); 
+                        LevelOneWaveOne.transform.Rotate(0.0f, 90f, 0.0f); break;
+                case 4: //Invoke("CallEnemies", SpawnDelay); 
+                        LevelOneWaveTwo.transform.Rotate(0.0f, 90f, 0.0f); LevelOneWaveTwo_2.transform.Rotate(0.0f, 90f, 0.0f); break;
+                case 6: //Invoke("CallEnemies", SpawnDelay); 
+                        LevelOne.transform.Rotate(0.0f, 90f, 0.0f); break;
+                case 8: //Invoke("CallEnemies", SpawnDelay); 
+                        LevelTwoWaveOne.transform.Rotate(0.0f, 90f, 0.0f); break;
+                case 10: //Invoke("CallEnemies", SpawnDelay); 
+                        LevelTwoWaveTwo.transform.Rotate(0.0f, 90f, 0.0f); break;
                 case 12: LevelTwo.transform.Rotate(0.0f, 90f, 0.0f); break;
             }
             LogicUpdate = true;
