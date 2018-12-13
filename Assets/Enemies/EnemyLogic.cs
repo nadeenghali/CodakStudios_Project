@@ -60,7 +60,10 @@ public class EnemyLogic : MonoBehaviour {
                     {
                         heavyDamage = heavyDamage * 1.1f;
                         lightDamage = lightDamage * 1.1f;
+
+                        KratosLogic.skillPoints = KratosLogic.skillPoints - 1;
                         KratosLogic.attackSkill = false;
+                        KratosLogic.levelUp = false;
                     }
 
                     if (KratosLogic.rageMode)
