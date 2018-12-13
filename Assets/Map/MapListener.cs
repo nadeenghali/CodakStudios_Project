@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MapListener : MonoBehaviour {
-
-
+    
     public GameObject LevelOneWaveOne;
     public GameObject LevelOneWaveTwo;
     public GameObject LevelOneWaveTwo_2;
@@ -21,21 +20,22 @@ public class MapListener : MonoBehaviour {
     public GameObject EnemyThree;
     public GameObject EnemyFour;
 
+    private static int EnemiesKilled = 0;
+    private static bool LogicUpdate = false;
 
+    private int level = 1;
+    private int wave = 1;
+    private int SpawnDelay = 7;
 
     // Use this for initialization
     void Start () {
-        CallEnemies(1, 1);
-        CallEnemies(1, 2);
-        CallEnemies(1, 3);
-        CallEnemies(2, 1);
-        CallEnemies(2, 2);
-        CallEnemies(2, 3);
+        Invoke("CallEnemies", 5);
     }
 	
 	// Update is called once per frame
 	void Update () {
         KeyboardButtons();
+        LevelLogic();
     }
 
     void KeyboardButtons()
@@ -68,7 +68,7 @@ public class MapListener : MonoBehaviour {
         }
     }
 
-    void CallEnemies(int level,int wave)
+    void CallEnemies()
     {
         switch (level)
         {
@@ -113,5 +113,33 @@ public class MapListener : MonoBehaviour {
                 //CreateBossLevel();
                 break;
         }
+        wave++;
+        if (wave == 4)
+            level++;
+    }
+
+
+
+    void LevelLogic()
+    {
+        if (!LogicUpdate)
+        {
+            switch (EnemiesKilled)
+            {
+                case 2: Invoke("CallEnemies", SpawnDelay); LevelOneWaveOne.transform.Rotate(0.0f, 90f, 0.0f); break;
+                case 4: Invoke("CallEnemies", SpawnDelay); LevelOneWaveTwo.transform.Rotate(0.0f, 90f, 0.0f); LevelOneWaveTwo_2.transform.Rotate(0.0f, 90f, 0.0f); break;
+                case 6: Invoke("CallEnemies", SpawnDelay); LevelOne.transform.Rotate(0.0f, 90f, 0.0f); break;
+                case 8: Invoke("CallEnemies", SpawnDelay); LevelTwoWaveOne.transform.Rotate(0.0f, 90f, 0.0f); break;
+                case 10: Invoke("CallEnemies", SpawnDelay); LevelTwoWaveTwo.transform.Rotate(0.0f, 90f, 0.0f); break;
+                case 12: LevelTwo.transform.Rotate(0.0f, 90f, 0.0f); break;
+            }
+            LogicUpdate = true;
+        }
+    }
+
+    public static void KillEnemy()
+    {
+        EnemiesKilled++;
+        LogicUpdate = false;
     }
 }
