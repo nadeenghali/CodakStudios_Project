@@ -6,10 +6,9 @@ public class AttackButtonScript : MonoBehaviour {
 
     public void UpgradeAttack()
     {
-        if (KratosLogic.skillPoints > 0)
+        if (KratosLogic.skillPoints > 0 && KratosLogic.levelUp)
         {
             KratosLogic.attackSkill = true;
-            KratosLogic.skillPoints = KratosLogic.skillPoints - 1;
         }
     }
 }

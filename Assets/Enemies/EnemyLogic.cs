@@ -30,10 +30,11 @@ public class EnemyLogic : MonoBehaviour {
         //else
           //  canAttack = false;
 
-        if(enemyHealthPoints == 0)
+        if(enemyHealthPoints <= 0)
         {
             //die anim then call DestroyEnemy()
             Invoke("DestroyEnemy", 5);
+            DestroyEnemy();
         }
 	}
 
@@ -51,6 +52,7 @@ public class EnemyLogic : MonoBehaviour {
         {
             if (other.CompareTag("Axe"))
             {
+                //print("axe hit collisoion");
                 // Kratos attacks enemy
                 if ((KratosLogic.lightAttack == true || KratosLogic.heavyAttack == true))
                 {
@@ -58,7 +60,10 @@ public class EnemyLogic : MonoBehaviour {
                     {
                         heavyDamage = heavyDamage * 1.1f;
                         lightDamage = lightDamage * 1.1f;
+
+                        KratosLogic.skillPoints = KratosLogic.skillPoints - 1;
                         KratosLogic.attackSkill = false;
+                        KratosLogic.levelUp = false;
                     }
 
                     if (KratosLogic.rageMode)
@@ -83,9 +88,11 @@ public class EnemyLogic : MonoBehaviour {
             }
 
             // Enemy attacks kratos
-            if (other.CompareTag("Kratos"))
+            if (other.CompareTag("Target"))
             {
-                KratosLogic.healthPoints = KratosLogic.healthPoints - 10;
+                print("Kratos hit collisoion");
+                KratosLogic.healthPoints =
+                    KratosLogic.healthPoints - 10;
                 KratosLogic.gotHit = true;
                 if (KratosLogic.healthPoints < 0)
                 {
@@ -97,6 +104,8 @@ public class EnemyLogic : MonoBehaviour {
 
     public void DestroyEnemy()
     {
+        MapListener.KillEnemy();
+
         Destroy(this.gameObject);
         KratosLogic.XP = KratosLogic.XP + 50;
         if (KratosLogic.XP > KratosLogic.maxXP)

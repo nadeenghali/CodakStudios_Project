@@ -191,6 +191,8 @@ GameObject:
   - component: {fileID: 114880668683889910}
   - component: {fileID: 114873671361085968}
   - component: {fileID: 54580611846128938}
+  - component: {fileID: 114655503250300914}
+  - component: {fileID: 195808532064004394}
   m_Layer: 0
   m_Name: CustomEnemy2
   m_TagString: Enemy
@@ -1188,7 +1190,7 @@ Animator:
   m_GameObject: {fileID: 1357695758231788}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 7cdb9a4248097ef4d8a6a784fa1212f7, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bf4b012fd8860a243b9ccd28a3f70f16, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1197,6 +1199,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114655503250300914
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1357695758231788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1fca8031b89d974ea48084acc3d31d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114873671361085968
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1316,3 +1329,24 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.116016924, y: -0.0034389496, z: -0.033612013}
     m_Extent: {x: 1.3754027, y: 0.9332926, z: 0.3393561}
   m_DirtyAABB: 0
+--- !u!195 &195808532064004394
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1357695758231788}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
