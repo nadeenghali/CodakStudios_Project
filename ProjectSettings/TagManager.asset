@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Kratos
   - Axe
+  - Enemy
+  - HealthChest
+  - Target
   layers:
   - Default
   - TransparentFX
