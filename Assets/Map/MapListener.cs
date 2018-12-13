@@ -25,11 +25,11 @@ public class MapListener : MonoBehaviour {
     public static bool EnemiesCreate = false;
     public static int level = 1;
     public static int wave = 1;
-    private static int SpawnDelay = 7;
 
     // Use this for initialization
     void Start () {
-        
+        EnemiesCreate = true;
+        CallEnemies();
     }
 	
 	// Update is called once per frame
@@ -115,7 +115,7 @@ public class MapListener : MonoBehaviour {
                 }
                 break;
             case 3:
-                LevelTwo.transform.Rotate(0.0f, -90f, 0.0f); break;
+                LevelTwo.transform.Rotate(0.0f, -90f, 0.0f);
                 break;
         }
         wave++;
