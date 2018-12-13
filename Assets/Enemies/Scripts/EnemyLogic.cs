@@ -10,25 +10,26 @@ public class EnemyLogic : MonoBehaviour {
 	//public Transform goal;
 
     public static bool canAttack=false;
-
+    public static bool gotHit;
     public static float enemyHealthPoints;
     public float lightDamage;
     public float heavyDamage;
 
     public void Start () {
 		agent= GetComponent<NavMeshAgent>();
-		//SetTarget(goal.position);
+        //SetTarget(goal.position);
         enemyHealthPoints = 50;
         lightDamage = 10;
         heavyDamage = 30;
+        gotHit = false;
     }
 
     // Update is called once per frame
     public void Update () {
         //if (transform.position.x > goal.position.x - 5 && transform.position.x < goal.position.x + 5)
-          //  canAttack = true;
+        //   canAttack = true;
         //else
-          //  canAttack = false;
+        //    canAttack = false;
 
         if(enemyHealthPoints <= 0)
         {
@@ -54,6 +55,7 @@ public class EnemyLogic : MonoBehaviour {
             {
                 //print("axe hit collisoion");
                 // Kratos attacks enemy
+                gotHit = true;
                 if ((KratosLogic.lightAttack == true || KratosLogic.heavyAttack == true))
                 {
                     if (KratosLogic.attackSkill)
