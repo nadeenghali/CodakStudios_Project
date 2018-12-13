@@ -9,6 +9,10 @@ TagManager:
   - Enemy
   - HealthChest
   - Target
+  - Music
+  - Speech
+  - Feedback
+  - Effect
   layers:
   - Default
   - TransparentFX
