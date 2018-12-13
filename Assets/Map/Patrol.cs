@@ -10,7 +10,7 @@ public class Patrol : MonoBehaviour
 
     void Start()
     {
-        target = GameObject.FindWithTag("Target").transform;
+        target = GameObject.FindWithTag("Kratos").transform;
         agent = GetComponent<NavMeshAgent>();
 
         // Disabling auto-braking allows for continuous movement
@@ -20,7 +20,6 @@ public class Patrol : MonoBehaviour
 
         //GotoNextPoint();
     }
-
 
     void GotoNextPoint()
     {
@@ -34,17 +33,20 @@ public class Patrol : MonoBehaviour
 
     void Update()
     {
-        target = GameObject.FindWithTag("Target").transform;
-        agent.destination = target.position;
-
-        if (agent.pathPending)
+        target = GameObject.FindWithTag("Kratos").transform;
+        if (target != null)
         {
-         
-        }
+            agent.destination = target.position;
 
-        if (!agent.pathPending && agent.remainingDistance < 0.5f)
-        {
-            //GotoNextPoint();
+            if (agent.pathPending)
+            {
+
+            }
+
+            if (!agent.pathPending && agent.remainingDistance < 0.5f)
+            {
+                //GotoNextPoint();
+            }
         }
     }
 }

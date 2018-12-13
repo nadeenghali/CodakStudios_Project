@@ -7,6 +7,7 @@ public class Kratos : MonoBehaviour
     Animator anim;
     public static float runSpeed;
     public static float walkSpeed;
+    GameObject Axe;
 
     // Use this for initialization
     void Start()
@@ -14,6 +15,8 @@ public class Kratos : MonoBehaviour
         anim = GetComponent<Animator>();
         runSpeed = 0.1f;
         walkSpeed = 0.07f;
+        Axe = GameObject.FindGameObjectWithTag("Axe");
+        Axe.GetComponent<BoxCollider>().isTrigger = false;
     }
 
     // Update is called once per frame
@@ -209,6 +212,9 @@ public class Kratos : MonoBehaviour
         {
             anim.SetBool("Attack_360", true);
             KratosLogic.heavyAttack = true;
+            Invoke("setAxeTrigger", 2.4f);
+            Axe.GetComponent<BoxCollider>().isTrigger = false;
+
         }
         else if (!Input.GetMouseButton(1))
         {
@@ -221,6 +227,8 @@ public class Kratos : MonoBehaviour
         {
             anim.SetBool("Attack_Horizontal", true);
             KratosLogic.lightAttack = true;
+            Invoke("setAxeTrigger", 2.4f);
+            Axe.GetComponent<BoxCollider>().isTrigger = false;
         }
         else if (!Input.GetMouseButton(0))
         {
@@ -276,6 +284,11 @@ public class Kratos : MonoBehaviour
         }
 
         transform.Translate(translate_x, 0, translate_z);
+    }
+
+    public void setAxeTrigger()
+    {
+        Axe.GetComponent<BoxCollider>().isTrigger = true;
     }
 
 }
