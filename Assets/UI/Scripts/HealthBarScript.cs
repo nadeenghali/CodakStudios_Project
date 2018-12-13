@@ -5,16 +5,26 @@ using UnityEngine.UI;
 
 public class HealthBarScript : MonoBehaviour {
 
+    float difference;
+
+    float myHealthPoints;
+
+    //CHEAT KEYS
     float xPos;
     float w;
 
     float increase;
     float decrease;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
+        myHealthPoints = KratosLogic.healthPoints;
+
+        difference = 0;
+
+        //CHEAT KEYS
         xPos = this.GetComponent<RectTransform>().position.x;
-        w  = this.GetComponent<RectTransform>().rect.width;
+        w = this.GetComponent<RectTransform>().rect.width;
 
         increase = 20;
         decrease = 20;
@@ -23,9 +33,31 @@ public class HealthBarScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        xPos = this.GetComponent<RectTransform>().position.x;
-        w = this.GetComponent<RectTransform>().rect.width;
+        if(myHealthPoints - KratosLogic.healthPoints != 0)
+        {
+            difference = myHealthPoints - KratosLogic.healthPoints;
 
+            if (difference > 0)
+            {
+                //decrease
+                difference = (difference / 2);
+            }
+            else
+            {
+                //increase
+                difference = -(difference / 2);
+            }
+
+            this.GetComponent<RectTransform>().sizeDelta = new Vector2(KratosLogic.healthPoints, this.GetComponent<RectTransform>().sizeDelta.y);
+            this.GetComponent<RectTransform>().Translate(new Vector3(difference, 0, 0));
+        }
+        
+        myHealthPoints = KratosLogic.healthPoints;
+
+
+
+        // CHEAT KEYS
+        w = this.GetComponent<RectTransform>().rect.width;
         //increase health
         if (Input.GetKeyUp(KeyCode.Alpha1))
         {
