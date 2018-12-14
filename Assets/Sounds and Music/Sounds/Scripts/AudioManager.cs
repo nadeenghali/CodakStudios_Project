@@ -3,82 +3,82 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour {
-    public AudioSource effectKratosWalking;
-    public AudioSource effectEnemyWalking;
+    public static AudioSource effectKratosWalking;
+    public static AudioSource effectEnemyWalking;
 
-    public AudioSource feedbackKratosHit;
-    public AudioSource feedbackKratosDied;
-    public AudioSource feedbackEnemyHit;
-    public AudioSource feedbackEnemyDied;
-    public AudioSource feedbackKratosCollect;
-    public AudioSource feedbackKratosRage;
+    public static AudioSource feedbackKratosHit;
+    public static AudioSource feedbackKratosDied;
+    public static AudioSource feedbackEnemyHit;
+    public static AudioSource feedbackEnemyDied;
+    public static AudioSource feedbackKratosCollect;
+    public static AudioSource feedbackKratosRage;
 
     //Kratos effect
-    public void startKratosWalking()
+    public static void startKratosWalking()
     {
         effectKratosWalking.Play();
     }
-    public void stopKratosWalking()
+    public static void stopKratosWalking()
     {
         effectKratosWalking.Stop();
     }
     //kratos feedback
-    public void playKratosIsHit()
+    public static void playKratosIsHit()
     {
         feedbackKratosHit.Play();
     }
-    public void stopKratosIsHit()
+    public static void stopKratosIsHit()
     {
         feedbackKratosHit.Stop();
     }
-    public void playKratosDies()
+    public static void playKratosDies()
     {
         feedbackKratosDied.Play();
     }
-    public void stopKratosDies()
+    public static void stopKratosDies()
     {
         feedbackKratosDied.Stop();
     }
-    public void playKratosCollectsHealth()
+    public static void playKratosCollectsHealth()
     {
         feedbackKratosCollect.Play();
     }
-    public void stopKratosCollectsHealth()
+    public static void stopKratosCollectsHealth()
     {
         feedbackKratosCollect.Stop();
     }
-    public void playKratosRage()
+    public static void playKratosRage()
     {
         feedbackKratosRage.Play();
     }
-    public void stopKratosRage()
+    public static void stopKratosRage()
     {
         feedbackKratosRage.Stop();
     }
 
     //enemy effect
-    public void startEnemyWalking()
+    public static void startEnemyWalking()
     {
         effectEnemyWalking.Play();
     }
-    public void stopEnemyWalking()
+    public static void stopEnemyWalking()
     {
         effectEnemyWalking.Stop();
     }
     //enemy feedback
-    public void playEnemyIsHit()
+    public static void playEnemyIsHit()
     {
         feedbackEnemyHit.Play();
     }
-    public void stopEnemyIsHit()
+    public static void stopEnemyIsHit()
     {
         feedbackEnemyHit.Stop();
     }
-    public void playEnemyDies()
+    public static void playEnemyDies()
     {
         feedbackEnemyDied.Play();
     }
-    public void stopEnemyDies()
+    public static void stopEnemyDies()
     {
         feedbackEnemyDied.Stop();
     }
