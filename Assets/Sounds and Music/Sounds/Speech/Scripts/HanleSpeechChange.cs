@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HanleSpeechChange : MonoBehaviour {
-    public AudioSource speechEnemyDetectsKratos1;
+    public AudioSource speechEnemyDetectsKratos;
+    public static bool enemyDetectsKratos;
+    public bool prevEnemyDetectsKratos;
 
-    public static AudioSource speechEnemyDetectsKratos;
-
-    void Start()
+    public void  startSpeechEnemyDetectsKratos()
     {
-        speechEnemyDetectsKratos = speechEnemyDetectsKratos1;
+        //enemyDetectsKratos = EnemyOne.enemyDetectsKratos || EnemyTwo.enemyDetectsKratos || EnemyThree.enemyDetectsKratos || EnemyFour.enemyDetectsKratos;
+        if (prevEnemyDetectsKratos != enemyDetectsKratos && enemyDetectsKratos)
+            speechEnemyDetectsKratos.Play();
+        //prev
     }
-
-    public static void  startSpeechEnemyDetectsKratos()
+    public void stopSpeechEnemyDetectsKratos()
     {
-        speechEnemyDetectsKratos.Play();
-    }
-    public static void stopSpeechEnemyDetectsKratos()
-    {
-        speechEnemyDetectsKratos.Stop();
+        //enemyDetectsKratos = EnemyOne.enemyDetectsKratos || EnemyTwo.enemyDetectsKratos || EnemyThree.enemyDetectsKratos || EnemyFour.enemyDetectsKratos;
+        if (prevEnemyDetectsKratos != enemyDetectsKratos && !enemyDetectsKratos)
+            speechEnemyDetectsKratos.Stop();
     }
 }

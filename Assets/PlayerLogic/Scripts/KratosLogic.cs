@@ -11,6 +11,7 @@ public class KratosLogic : MonoBehaviour {
 
     public Text gameScreenSkills;
     public Text upgradeScreenSkills;
+    public Text levelText;
 
     public static int level;
     public static int deadEnemies;
@@ -161,8 +162,9 @@ public class KratosLogic : MonoBehaviour {
             if (XP >= maxXP)
                 XP = maxXP;
         }
-        //gameScreenSkills.text = "Skill Points :  " + skillPoints;
-        //upgradeScreenSkills.text = "Skill Points :  " + skillPoints;
+        gameScreenSkills.text = "Skill Points :  " + skillPoints;
+        upgradeScreenSkills.text = "Skill Points :  " + skillPoints;
+        levelText.text = "Level : " + level;
     }
 
 
@@ -197,6 +199,8 @@ public class KratosLogic : MonoBehaviour {
     public void LevelUp()
     {
         skillPoints = skillPoints + 1;
+
+        levelText.text = "Level : " + level;
         maxXP = maxXP * 2;
         levelUp = true;
     }
@@ -208,12 +212,12 @@ public class KratosLogic : MonoBehaviour {
 
         if(level == 2)
         {
-            //level 2 positions
+            this.GetComponent<Transform>().position = new Vector3(-0.98f, 0, 15.404f);
         }
 
         if(level == 3)
         {
-            //level 3 positions
+            this.GetComponent<Transform>().position = new Vector3(30.18f, 11.74f, 118.89f);
         }
 
         deadEnemies = 0;

@@ -25,7 +25,7 @@ public class BossScript : MonoBehaviour {
         WeakPointTwoHits = 2;
         WeakPointThreeHits = 2;
         agent.speed = 0f;
-        Invoke("onActivateBoss", 5.0f);
+       // Invoke("onActivateBoss", 5.0f);
 	}
 	
 	// Update is called once per frame
@@ -57,6 +57,10 @@ public class BossScript : MonoBehaviour {
         ArrayList availableAttacks = GetAttacks();
         int randomIndex = Random.Range(0, availableAttacks.Count);
         bossActions.toggleParams((string)availableAttacks[randomIndex]);
+        if (availableAttacks[randomIndex].Equals(BossActions.MagicAttack3))
+        {
+            MapListener.bossBool = true;
+        }
     }
     void NormalHit()
     {
@@ -92,7 +96,7 @@ public class BossScript : MonoBehaviour {
         }
         if (!bossActions.isAttacking())
         {
-            AudioManager.playEnemyIsHit();
+            //AudioManager.playEnemyIsHit();
             switch (collision)
             {
                 case "Head": onHittingWeakPointTwo(); break;
@@ -156,7 +160,7 @@ public class BossScript : MonoBehaviour {
         }
     }
 
-    void onActivateBoss()
+    public void onActivateBoss()
     {
         agent.speed = 2.0f;
         inBossLevel = true;
@@ -175,7 +179,7 @@ public class BossScript : MonoBehaviour {
         bossActions.toggleParams("Die");
         bossActions.setDead();
         KratosLogic.gameWon = true;
-        AudioManager.playEnemyDies();
+//        AudioManager.playEnemyDies();
 
 
     }
@@ -186,7 +190,7 @@ public class BossScript : MonoBehaviour {
         {
             agent.speed = 0.0f;
             timer = 4.5f;
-            HanleSpeechChange.startSpeechEnemyDetectsKratos();
+//            HanleSpeechChange.startSpeechEnemyDetectsKratos();
         }
     }
 

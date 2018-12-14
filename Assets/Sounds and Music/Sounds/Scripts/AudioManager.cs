@@ -3,105 +3,117 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour {
-    public AudioSource effectKratosWalking1;
-    public AudioSource effectEnemyWalking1;
 
-    public AudioSource feedbackKratosHit1;
-    public AudioSource feedbackKratosDied1;
-    public AudioSource feedbackEnemyHit1;
-    public AudioSource feedbackEnemyDied1;
-    public AudioSource feedbackKratosCollect1;
-    public AudioSource feedbackKratosRage1;
+    public AudioSource effectKratosWalking;
+    public AudioSource effectEnemyWalking;
 
-    public static AudioSource effectKratosWalking;
-    public static AudioSource effectEnemyWalking;
+    public static bool kratosWalking;
+    public static bool enemyWalkin;
+    public bool prevKratosWalking;
+    public bool prevEnemyWalkin;
 
-    public static AudioSource feedbackKratosHit;
-    public static AudioSource feedbackKratosDied;
-    public static AudioSource feedbackEnemyHit;
-    public static AudioSource feedbackEnemyDied;
-    public static AudioSource feedbackKratosCollect;
-    public static AudioSource feedbackKratosRage;
+    public AudioSource feedbackKratosHit;
+    public static bool kratosHit;
+    public bool prevKratosHit;
+    public AudioSource feedbackKratosDied;
+    public static bool kratosDied;
+    public bool prevKratosDied;
+    public AudioSource feedbackEnemyHit;
+    public static bool enemyHit;
+    public bool prevEnemyHit;
+    public AudioSource feedbackEnemyDied;
+    public static bool enemyDied;
+    public bool prevEnemyDied;
+    public AudioSource feedbackKratosCollect;
+    public static bool kratosCollect;
+    public bool prevKratosCollect;
+    public AudioSource feedbackKratosRage;
+    public static bool kratosRage;
+    public bool prevKratosRage;
 
-    void start()
-    {
-        effectKratosWalking = effectKratosWalking1;
-        effectEnemyWalking = effectEnemyWalking1;
-        feedbackKratosHit = feedbackKratosHit1;
-        feedbackKratosDied = feedbackKratosDied1;
-        feedbackKratosCollect = feedbackKratosCollect1;
-        feedbackKratosRage = feedbackKratosRage1;
-        feedbackEnemyHit = feedbackEnemyHit1;
-        feedbackEnemyDied = feedbackEnemyDied1;
-
-    }
     //Kratos effect
-    public static void startKratosWalking()
+    public void startKratosWalking()
     {
-        effectKratosWalking.Play();
+        if (prevKratosWalking != kratosWalking && kratosWalking)
+            effectKratosWalking.Play();
     }
-    public static void stopKratosWalking()
+    public void stopKratosWalking()
     {
-        effectKratosWalking.Stop();
+        if (prevKratosWalking != kratosWalking && !kratosWalking)
+            effectKratosWalking.Stop();
     }
     //kratos feedback
-    public static void playKratosIsHit()
+    public void playKratosIsHit()
     {
-        feedbackKratosHit.Play();
+        if (prevKratosHit != kratosHit && kratosHit)
+            feedbackKratosHit.Play();
     }
-    public static void stopKratosIsHit()
+    public void stopKratosIsHit()
     {
-        feedbackKratosHit.Stop();
+        if (prevKratosHit != kratosHit && !kratosHit)
+            feedbackKratosHit.Stop();
     }
-    public static void playKratosDies()
+    public void playKratosDies()
     {
-        feedbackKratosDied.Play();
+        if (prevKratosDied != kratosDied && kratosDied)
+            feedbackKratosDied.Play();
     }
-    public static void stopKratosDies()
+    public void stopKratosDies()
     {
-        feedbackKratosDied.Stop();
+        if (prevKratosDied != kratosDied && !kratosDied)
+            feedbackKratosDied.Stop();
     }
-    public static void playKratosCollectsHealth()
+    public void playKratosCollectsHealth()
     {
-        feedbackKratosCollect.Play();
+        if (prevKratosCollect != kratosCollect && kratosCollect)
+            feedbackKratosCollect.Play();
     }
-    public static void stopKratosCollectsHealth()
+    public void stopKratosCollectsHealth()
     {
-        feedbackKratosCollect.Stop();
+        if (prevKratosCollect != kratosCollect && !kratosCollect)
+            feedbackKratosCollect.Stop();
     }
-    public static void playKratosRage()
+    public void playKratosRage()
     {
-        feedbackKratosRage.Play();
+        if (prevKratosRage != kratosRage && kratosRage)
+            feedbackKratosRage.Play();
     }
-    public static void stopKratosRage()
+    public void stopKratosRage()
     {
-        feedbackKratosRage.Stop();
+        if (prevKratosRage != kratosRage && !kratosRage)
+            feedbackKratosRage.Stop();
     }
 
     //enemy effect
-    public static void startEnemyWalking()
+    public void startEnemyWalking()
     {
-        effectEnemyWalking.Play();
+        if (prevEnemyWalkin != enemyWalkin && enemyWalkin)
+            effectEnemyWalking.Play();
     }
-    public static void stopEnemyWalking()
+    public void stopEnemyWalking()
     {
-        effectEnemyWalking.Stop();
+        if (prevEnemyWalkin != enemyWalkin && !enemyWalkin)
+            effectEnemyWalking.Stop();
     }
     //enemy feedback
-    public static void playEnemyIsHit()
+    public void playEnemyIsHit()
     {
-        feedbackEnemyHit.Play();
+        if (prevEnemyHit != enemyHit && enemyHit)
+            feedbackEnemyHit.Play();
     }
-    public static void stopEnemyIsHit()
+    public void stopEnemyIsHit()
     {
-        feedbackEnemyHit.Stop();
+        if (prevEnemyHit != enemyHit && !enemyHit)
+            feedbackEnemyHit.Stop();
     }
-    public static void playEnemyDies()
+    public void playEnemyDies()
     {
-        feedbackEnemyDied.Play();
+        if (prevEnemyDied != enemyDied && enemyDied)
+            feedbackEnemyDied.Play();
     }
-    public static void stopEnemyDies()
+    public void stopEnemyDies()
     {
-        feedbackEnemyDied.Stop();
+        if (prevEnemyDied != enemyDied && !enemyDied)
+            feedbackEnemyDied.Stop();
     }
 }

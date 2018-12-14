@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class RestartLevelScript : MonoBehaviour {
 
+    public Canvas gameCanvas;
+
     public void RestartLevel()
     {
         Time.timeScale = 1;
         PauseScript.paused = false;
+
+        gameCanvas.GetComponent<Canvas>().enabled = true;
+        this.GetComponent<Canvas>().enabled = false;
 
         // Move player to starting point of this level (physically) -- shazly
 

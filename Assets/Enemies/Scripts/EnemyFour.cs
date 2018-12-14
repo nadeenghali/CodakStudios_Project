@@ -54,8 +54,8 @@ public class EnemyFour : MonoBehaviour {
         float damage;
         int i = 1;
 
-        //if (!KratosLogic.isBlocking)
-        if (true)
+        if (!KratosLogic.isBlocking)
+        //if (true)
         {
             if (other.CompareTag("Axe"))
             {

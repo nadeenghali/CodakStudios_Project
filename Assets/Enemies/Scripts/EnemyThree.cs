@@ -55,8 +55,8 @@ public class EnemyThree : MonoBehaviour {
         float damage;
         int i = 1;
 
-        //if (!KratosLogic.isBlocking)
-        if (true)
+        if (!KratosLogic.isBlocking)
+        //if (true)
         {
             if (other.CompareTag("Axe"))
             {
@@ -158,7 +158,7 @@ public class EnemyThree : MonoBehaviour {
     {
         if (enemyHealthPoints <= 0)
         {
-            AudioManager.playEnemyDies();
+//            AudioManager.playEnemyDies();
             this.gameObject.GetComponent<BoxCollider>().enabled = false;
             this.gameObject.GetComponent<NavMeshAgent>().enabled = false;
             dead = true;
@@ -183,7 +183,7 @@ public class EnemyThree : MonoBehaviour {
         {
             if (timeToAttack > 0 && EnemyLogic.enemyHealthPoints > 0)
             {
-                AudioManager.startEnemyWalking();
+                //AudioManager.startEnemyWalking();
                 anim.SetBool("Running", true);
                 anim.SetBool("timeToAttack", false);
                 anim.SetBool("Die", false);
@@ -196,7 +196,7 @@ public class EnemyThree : MonoBehaviour {
     {
         if (EnemyLogic.gotHit)
         {
-            AudioManager.playEnemyIsHit();
+            //AudioManager.playEnemyIsHit();
             anim.SetBool("timeToAttack", false);
             anim.SetBool("Die", false);
             anim.SetBool("Hit", true);
@@ -209,8 +209,8 @@ public class EnemyThree : MonoBehaviour {
     {
         if (walking)
         {
-            AudioManager.stopEnemyWalking();
-            HanleSpeechChange.startSpeechEnemyDetectsKratos();
+  //          AudioManager.stopEnemyWalking();
+//            HanleSpeechChange.startSpeechEnemyDetectsKratos();
 
             anim.SetBool("Running", false);
         }
