@@ -17,7 +17,7 @@ public class BossScript : MonoBehaviour {
     private float timer = 0f;
     private string target = "KratosPersonalSpace";
     public static bool inBossLevel = false ;
-
+    private int damageScale = 1 ;
 	void Start () {
         bossActions = gameObject.GetComponent<BossActions>();
         agent = gameObject.GetComponent<NavMeshAgent>();
@@ -58,20 +58,35 @@ public class BossScript : MonoBehaviour {
     }
     void NormalHit()
     {
+        if(damageScale == 1)
         HealthPoints = (int) (HealthPoints * 0.95);
+        else
+            HealthPoints = (int)(HealthPoints * 0.90);
+
         if (HealthPoints <= 0)
             Die();
     }
     void WeakHit()
     {
-        HealthPoints = (int)(HealthPoints * 0.80);
+        if (damageScale == 1)
+            HealthPoints = (int)(HealthPoints * 0.80);
+        else
+            HealthPoints = (int)(HealthPoints * 0.60);
+
         if (HealthPoints <= 0)
             Die();
 
     }
-    public void onHit(string collision)
+    public void onHit(string collision,bool rage)
     {
-        print(HealthPoints);
+        if (rage)
+        {
+            damageScale = 2;
+        }
+        else
+        {
+            damageScale = 1;
+        }
         if (!bossActions.isAttacking())
         {
             switch (collision)

@@ -27,7 +27,17 @@ public class WeakColliders : MonoBehaviour {
     {
         if (collision.CompareTag(compareTag) && kratos_btates.isAttacking())
         {
-            bossScript.onHit(weakPoint);
+            bossScript.onHit(weakPoint,KratosLogic.rageMode);
+        }
+        if (collision.CompareTag("Kratos") && boss.GetComponent<BossActions>().isAttacking()&&!KratosLogic.isBlocking)
+        {
+            KratosLogic.healthPoints =
+                           KratosLogic.healthPoints - 10;
+            KratosLogic.gotHit = true;
+            if (KratosLogic.healthPoints < 0)
+            {
+                KratosLogic.healthPoints = 0;
+            }
         }
     }
 }

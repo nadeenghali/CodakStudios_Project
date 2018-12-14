@@ -137,8 +137,8 @@ public class KratosLogic : MonoBehaviour {
             gameWon = false;
         }
 
-        gameScreenSkills.text = "Skill Points :  " + skillPoints;
-        upgradeScreenSkills.text = "Skill Points :  " + skillPoints;
+        //gameScreenSkills.text = "Skill Points :  " + skillPoints;
+        //upgradeScreenSkills.text = "Skill Points :  " + skillPoints;
     }
 
     public static void EnemyDead()

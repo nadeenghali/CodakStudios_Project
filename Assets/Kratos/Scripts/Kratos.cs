@@ -25,7 +25,7 @@ public class Kratos : MonoBehaviour
 
         float translate_z = 0;
         float translate_x = 0;
-
+ 
 
         //Jump
         if (Input.GetKey(KeyCode.Space) && !KratosLogic.isDead)
@@ -34,11 +34,13 @@ public class Kratos : MonoBehaviour
             {
                 anim.SetBool("Double_Jump", true);
                 anim.SetBool("Jump", false);
+                Invoke("resetDJump",2.5f);
                // this.GetComponent<Rigidbody>().AddForce(transform.up * 10, ForceMode.Impulse);
             }
             if (!anim.GetBool("Double_Jump") && !anim.GetBool("Jump"))
             {
                 anim.SetBool("Jump", true);
+                Invoke("resetDJump", 2.5f);
                // this.GetComponent<Rigidbody>().AddForce(transform.up * 10, ForceMode.Impulse);
             }
         }
@@ -193,13 +195,14 @@ public class Kratos : MonoBehaviour
         if (KratosLogic.gotKilled && KratosLogic.isDead)
         {
             anim.SetBool("Die", true);
+       
             KratosLogic.gotKilled = false;
             print("Dead");
         }
-        /*else if (!KratosLogic.gotKilled)
+        else if (!KratosLogic.gotKilled)
         {
             anim.SetBool("Die", false);
-        }*/
+        }
 
 
         //got hit
@@ -295,6 +298,15 @@ public class Kratos : MonoBehaviour
     public void resetAxeTrigger()
     {
         Axe.GetComponent<BoxCollider>().isTrigger = false;
+    }
+    public void resetDJump()
+    {
+        anim.SetBool("Double Jump", false);
+    }
+
+    public void resetJump()
+    {
+        anim.SetBool("Jump", false);
     }
     public bool isAttacking()
     {
