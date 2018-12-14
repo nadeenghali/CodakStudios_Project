@@ -34,10 +34,12 @@ public class Kratos : MonoBehaviour
             {
                 anim.SetBool("Double_Jump", true);
                 anim.SetBool("Jump", false);
+               // this.GetComponent<Rigidbody>().AddForce(transform.up * 10, ForceMode.Impulse);
             }
             if (!anim.GetBool("Double_Jump") && !anim.GetBool("Jump"))
             {
                 anim.SetBool("Jump", true);
+               // this.GetComponent<Rigidbody>().AddForce(transform.up * 10, ForceMode.Impulse);
             }
         }
         else
@@ -194,10 +196,10 @@ public class Kratos : MonoBehaviour
             KratosLogic.gotKilled = false;
             print("Dead");
         }
-        else if (!KratosLogic.gotKilled)
+        /*else if (!KratosLogic.gotKilled)
         {
             anim.SetBool("Die", false);
-        }
+        }*/
 
 
         //got hit
