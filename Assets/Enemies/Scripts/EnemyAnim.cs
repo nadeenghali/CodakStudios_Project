@@ -6,31 +6,35 @@ public class EnemyAnim : MonoBehaviour {
 
 	// Use this for initialization
 	Animator anim;
-	float timeToAttack = 1f;
+	float timeToAttack = 3f;
     //bool canAttack;
     //bool gotHit;
-
+    public static bool walking = false;
 	public void Start () {
 	    anim = GetComponent<Animator>();
         //canAttack = EnemyLogic.canAttack;
+
     }
 
     // Update is called once per frame
     public void Update () {
-		Run();
+        Walk();
+        Run();
 		Dead();
 		Attack();
 		Hit();
+        
 	}
 
     public void Attack() {
         timeToAttack -= Time.deltaTime;
         if (timeToAttack <= 0 /*&& canAttack==true*/)
         {
+            
             anim.SetBool("timeToAttack", true);
             anim.SetBool("Die", false);
             anim.SetBool("Hit", false);
-            timeToAttack = 30.0f;
+            timeToAttack = 3.0f;
         }
     }
 
@@ -43,10 +47,15 @@ public class EnemyAnim : MonoBehaviour {
 	}
 
     public void Run() {
-        if (timeToAttack > 0 && EnemyLogic.enemyHealthPoints > 0) {
-            anim.SetBool("timeToAttack", false);
-            anim.SetBool("Die", false);
-            anim.SetBool("Hit", false);
+        if (!walking)
+        {
+            if (timeToAttack > 0 && EnemyLogic.enemyHealthPoints > 0)
+            {
+                anim.SetBool("Running", true);
+                anim.SetBool("timeToAttack", false);
+                anim.SetBool("Die", false);
+                anim.SetBool("Hit", false);
+            }
         }
     }
 
@@ -57,5 +66,13 @@ public class EnemyAnim : MonoBehaviour {
              anim.SetBool("Hit", true);
             EnemyLogic.gotHit = false;
        }
+    }
+
+    public void Walk()
+    {
+        if (walking)
+        {
+            anim.SetBool("Running", false);
+        }
     }
 }

@@ -16,6 +16,7 @@ TagManager:
   - L2W2
   - L2W3
   - L3
+  - KratosPersonalSpace
   layers:
   - Default
   - TransparentFX

@@ -9,7 +9,7 @@ public class CameraControl : MonoBehaviour {
 
     void Start()
     {
-        lockCamera = false;
+        lockCamera = true;
     }
 
     void FixedUpdate()

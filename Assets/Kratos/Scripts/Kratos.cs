@@ -192,6 +192,7 @@ public class Kratos : MonoBehaviour
         {
             anim.SetBool("Die", true);
             KratosLogic.gotKilled = false;
+            print("Dead");
         }
         else if (!KratosLogic.gotKilled)
         {
@@ -215,8 +216,8 @@ public class Kratos : MonoBehaviour
         {
             anim.SetBool("Attack_360", true);
             KratosLogic.heavyAttack = true;
-            Invoke("setAxeTrigger", 2.4f);
-            Axe.GetComponent<BoxCollider>().isTrigger = false;
+            Axe.GetComponent<BoxCollider>().isTrigger = true;
+            Invoke("resetAxeTrigger", 2.4f);
 
         }
         else if (!Input.GetMouseButton(1))
@@ -230,8 +231,8 @@ public class Kratos : MonoBehaviour
         {
             anim.SetBool("Attack_Horizontal", true);
             KratosLogic.lightAttack = true;
-            Invoke("setAxeTrigger", 2.4f);
-            Axe.GetComponent<BoxCollider>().isTrigger = false;
+            Axe.GetComponent<BoxCollider>().isTrigger = true;
+            Invoke("resetAxeTrigger", 2.4f);
         }
         else if (!Input.GetMouseButton(0))
         {
@@ -289,9 +290,9 @@ public class Kratos : MonoBehaviour
         transform.Translate(translate_x, 0, translate_z);
     }
 
-    public void setAxeTrigger()
+    public void resetAxeTrigger()
     {
-        Axe.GetComponent<BoxCollider>().isTrigger = true;
+        Axe.GetComponent<BoxCollider>().isTrigger = false;
     }
 
 }

@@ -38,7 +38,7 @@ public class EnemyLogic : MonoBehaviour {
         {
             //die anim then call DestroyEnemy()
             Invoke("DestroyEnemy", 5);
-            DestroyEnemy();
+            //DestroyEnemy();
         }
 	}
 
@@ -83,20 +83,14 @@ public class EnemyLogic : MonoBehaviour {
 
                     enemyHealthPoints = enemyHealthPoints - damage;
 
-                    if (!KratosLogic.rageMode)
-                    {
-                        KratosLogic.rage = KratosLogic.rage + 20;
-                        if (KratosLogic.rage > KratosLogic.maxRage)
-                        {
-                            KratosLogic.rage = KratosLogic.maxRage;
-                        }
-                    }
+                    
                 }
             }
 
             // Enemy attacks kratos
             if (other.CompareTag("Kratos"))
             {
+                EnemyAnim.walking = true;
                 print("Kratos hit collisoion");
                 KratosLogic.healthPoints =
                     KratosLogic.healthPoints - 10;
@@ -105,6 +99,10 @@ public class EnemyLogic : MonoBehaviour {
                 {
                     KratosLogic.healthPoints = 0;
                 }
+            }
+            if (other.CompareTag("KratosPersonalSpace"))
+            {
+                EnemyAnim.walking = true;
             }
         } 
     }
@@ -117,5 +115,13 @@ public class EnemyLogic : MonoBehaviour {
         KratosLogic.XP = KratosLogic.XP + 50;
         if (KratosLogic.XP > KratosLogic.maxXP)
             KratosLogic.XP = KratosLogic.maxXP;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("KratosPersonalSpace"))
+        {
+            EnemyAnim.walking = false;
+        }
     }
 }
