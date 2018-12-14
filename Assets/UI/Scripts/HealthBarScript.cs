@@ -5,12 +5,10 @@ using UnityEngine.UI;
 
 public class HealthBarScript : MonoBehaviour {
 
-    float difference;
-
-    float myHealthPoints;
-
     //CHEAT KEYS
     float xPos;
+    float yPos;
+
     float w;
 
     float increase;
@@ -18,12 +16,10 @@ public class HealthBarScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        myHealthPoints = KratosLogic.healthPoints;
 
-        difference = 0;
-
-        //CHEAT KEYS
         xPos = this.GetComponent<RectTransform>().position.x;
+        yPos = this.GetComponent<RectTransform>().position.y;
+
         w = this.GetComponent<RectTransform>().rect.width;
 
         increase = 20;
@@ -33,28 +29,8 @@ public class HealthBarScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if(myHealthPoints - KratosLogic.healthPoints != 0)
-        {
-            difference = myHealthPoints - KratosLogic.healthPoints;
-
-            if (difference > 0)
-            {
-                //decrease
-                difference = (difference / 2);
-            }
-            else
-            {
-                //increase
-                difference = -(difference / 2);
-            }
-
-            this.GetComponent<RectTransform>().sizeDelta = new Vector2(KratosLogic.healthPoints, this.GetComponent<RectTransform>().sizeDelta.y);
-            this.GetComponent<RectTransform>().Translate(new Vector3(difference, 0, 0));
-        }
-        
-        myHealthPoints = KratosLogic.healthPoints;
-
-
+        this.GetComponent<RectTransform>().sizeDelta = new Vector2(KratosLogic.healthPoints, this.GetComponent<RectTransform>().sizeDelta.y);
+        this.GetComponent<RectTransform>().position = new Vector3( 60 + ((KratosLogic.healthPoints*50)/ KratosLogic.maxHealthPoints), yPos, 0);
 
         // CHEAT KEYS
         w = this.GetComponent<RectTransform>().rect.width;
@@ -73,7 +49,7 @@ public class HealthBarScript : MonoBehaviour {
                 xPos = (increase / 2);
 
                 this.GetComponent<RectTransform>().sizeDelta = new Vector2(w, this.GetComponent<RectTransform>().sizeDelta.y);
-                this.GetComponent<RectTransform>().Translate(new Vector3(xPos, 0, 0));
+                this.GetComponent<RectTransform>().Translate(new Vector3(xPos, yPos, 0));
             }
         }
 

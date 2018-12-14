@@ -5,15 +5,10 @@ using UnityEngine.UI;
 
 public class XPBarScript : MonoBehaviour {
 
-    float difference;
-
-    float myXP;
-    float myMaxXP;
-
-    float percentage;
-
     //CHEAT KEYS
     float xPos;
+    float yPos;
+
     float w;
 
     float increase;
@@ -22,14 +17,9 @@ public class XPBarScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        myXP = KratosLogic.XP;
-        myMaxXP = KratosLogic.maxXP;
-
-        difference = 0;
-
-        percentage = 100 / myMaxXP;
-        //CHEAT KEYS
         xPos = this.GetComponent<RectTransform>().position.x;
+        yPos = this.GetComponent<RectTransform>().position.y;
+
         w = this.GetComponent<RectTransform>().rect.width;
 
         increase = 10;
@@ -39,19 +29,9 @@ public class XPBarScript : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        this.GetComponent<RectTransform>().sizeDelta = new Vector2((KratosLogic.XP * 100)/KratosLogic.maxXP, this.GetComponent<RectTransform>().sizeDelta.y);
+        this.GetComponent<RectTransform>().position = new Vector3(60 + ((KratosLogic.XP * 50)/ KratosLogic.maxXP), yPos, 0);
 
-        difference = myXP - KratosLogic.XP;
-        if (difference != 0)
-        {
-            difference = -(difference / 2);
-
-            this.GetComponent<RectTransform>().sizeDelta = new Vector2((KratosLogic.XP * percentage), this.GetComponent<RectTransform>().sizeDelta.y);
-            this.GetComponent<RectTransform>().Translate(new Vector3((difference * percentage), 0, 0));
-        }
-
-        myXP = KratosLogic.XP;
-        myMaxXP = KratosLogic.maxXP;
-        percentage = 100 / myMaxXP;
 
         //CHEAT KEYS
         w = this.GetComponent<RectTransform>().rect.width;
@@ -71,7 +51,7 @@ public class XPBarScript : MonoBehaviour {
                 xPos = (increase / 2);
 
                 this.GetComponent<RectTransform>().sizeDelta = new Vector2(w, this.GetComponent<RectTransform>().sizeDelta.y);
-                this.GetComponent<RectTransform>().Translate(new Vector3(xPos, 0, 0));
+                this.GetComponent<RectTransform>().Translate(new Vector3(xPos, yPos, 0));
             }
         }
 
@@ -90,7 +70,7 @@ public class XPBarScript : MonoBehaviour {
                 xPos = -(decrease / 2);
 
                 this.GetComponent<RectTransform>().sizeDelta = new Vector2(w, this.GetComponent<RectTransform>().sizeDelta.y);
-                this.GetComponent<RectTransform>().Translate(new Vector3(xPos, 0, 0));
+                this.GetComponent<RectTransform>().Translate(new Vector3(xPos, yPos, 0));
             }
         }
     }

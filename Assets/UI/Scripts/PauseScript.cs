@@ -22,7 +22,6 @@ public class PauseScript : MonoBehaviour {
 
     public void Pause()
     {
-        //and add anything that we change when we resume or pause
         Time.timeScale = 0;
         paused = true;
 

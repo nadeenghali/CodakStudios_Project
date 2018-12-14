@@ -13,9 +13,10 @@ public class HealthChestOpen : MonoBehaviour {
     }
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Kratos")
+        if (collision.gameObject.tag == "Kratos" && !healthChestOpen)
         {
             healthChestOpen = true;
+            KratosLogic.healthPoints = 100;
             animator.SetBool("healthChestOpen", healthChestOpen);
         }
     }
