@@ -188,6 +188,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volume: 0
   musicSources: []
+--- !u!114 &41777830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 41777828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8dff88ad13bba248abfd09bfbc5ed60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volume: 0
+  speechSources: []
+--- !u!114 &41777831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 41777828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de73f1af6f6d84747a54334d0be72a49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volume: 0
+  feedbackSources: []
+--- !u!114 &41777832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 41777828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 602db15317d9a194ca952ab336e39ecc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volume: 0
+  effectsSources: []
 --- !u!1 &50907921
 GameObject:
   m_ObjectHideFlags: 0

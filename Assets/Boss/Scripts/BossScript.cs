@@ -16,6 +16,8 @@ public class BossScript : MonoBehaviour {
     public float waitTime = 5f;
     private float timer = 0f;
     private string target = "Target";
+    public static bool inBossLevel = false ;
+
 	void Start () {
         bossActions = gameObject.GetComponent<BossActions>();
         agent = gameObject.GetComponent<NavMeshAgent>();
@@ -132,6 +134,7 @@ public class BossScript : MonoBehaviour {
     void onActivateBoss()
     {
         agent.speed = 2.0f;
+        inBossLevel = true;
     }
     void onHittingWeakPointThree()
     {

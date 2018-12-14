@@ -6,10 +6,9 @@ public class HealthButtonScript : MonoBehaviour {
 
     public void UpgradeHealth()
     {
-        if (KratosLogic.skillPoints > 0)
+        if (KratosLogic.skillPoints > 0 && KratosLogic.levelUp)
         {
             KratosLogic.healthSkill = true;
-            KratosLogic.skillPoints = KratosLogic.skillPoints - 1;
         }
     }
 }
