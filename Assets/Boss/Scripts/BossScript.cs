@@ -34,6 +34,7 @@ public class BossScript : MonoBehaviour {
 
         if (agent.speed>0){
             bossActions.toggleParams(BossActions.Walking);
+
         }
      
         else
@@ -170,6 +171,7 @@ public class BossScript : MonoBehaviour {
     {
         bossActions.toggleParams("Die");
         bossActions.setDead();
+        KratosLogic.gameWon = true;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -178,6 +180,7 @@ public class BossScript : MonoBehaviour {
         {
             agent.speed = 0.0f;
             timer = 4.5f;
+            
         }
     }
 

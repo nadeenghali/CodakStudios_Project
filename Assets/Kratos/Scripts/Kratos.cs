@@ -96,12 +96,19 @@ public class Kratos : MonoBehaviour
         }
 
 
+        if ((!(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))) &&
+            (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
+            && !KratosLogic.isDead)
+        {
+            //AudioManager.startKratosWalking();
+        }
+
+
         //Waking
         if ((!(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))) &&
             (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow))
             && !KratosLogic.isDead)
         {
-
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             {
                 translate_z = walkSpeed;
@@ -131,6 +138,7 @@ public class Kratos : MonoBehaviour
             }
             else
             {
+                //AudioManager.stopKratosWalking();
                 translate_z = 0;
                 anim.SetBool("Walk_Forward", false);
                 anim.SetBool("Walk_Back", false);
@@ -195,8 +203,8 @@ public class Kratos : MonoBehaviour
         if (KratosLogic.gotKilled && KratosLogic.isDead)
         {
             anim.SetBool("Die", true);
-       
             KratosLogic.gotKilled = false;
+            //AudioManager.playKratosDies();
             print("Dead");
         }
         else if (!KratosLogic.gotKilled)
@@ -210,6 +218,7 @@ public class Kratos : MonoBehaviour
         {
             anim.SetBool("Hit_React", true);
             KratosLogic.gotHit = false;
+            //AudioManager.playKratosIsHit();
         }
         else if (!KratosLogic.gotHit) 
             {
@@ -250,6 +259,7 @@ public class Kratos : MonoBehaviour
         {
             anim.SetBool("Rage", true);
             KratosLogic.rageMode = true;
+            //AudioManager.playKratosRage();
         }
         else if (!Input.GetKeyDown(KeyCode.R))
         {
