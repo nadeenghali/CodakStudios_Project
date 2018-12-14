@@ -16,8 +16,7 @@ public static string Walking = "Walking";
 public static string Die = "Die";
 public static string ReactionToHead = "ReactionToHead";
 public static string ReactionToGut = "ReactionToGut";
-
-
+private bool dead;
 
 
 
@@ -46,6 +45,7 @@ public static string ReactionToGut = "ReactionToGut";
     }
     public void toggleParams(string action)
     {
+        if (!dead)
         for (int i = 0; i < animParams.Length; i++)
         {
             if (action.Equals(animParams[i].name))
@@ -57,7 +57,12 @@ public static string ReactionToGut = "ReactionToGut";
                 animator.SetBool(animParams[i].name, false);
             }
         }
-
+        else
+        {
+            Idle();
+            animator.SetBool("Die", true);
+            
+        }
         
     }
     public bool isSecondAttackChoosen()
@@ -67,6 +72,9 @@ public static string ReactionToGut = "ReactionToGut";
     public void DoADive()
     {
         animator.SetBool(Dive, true);
+    }
+    public void setDead(){
+        dead = true;
     }
     public void Idle()
     {

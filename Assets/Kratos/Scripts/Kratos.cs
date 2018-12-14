@@ -294,5 +294,11 @@ public class Kratos : MonoBehaviour
     {
         Axe.GetComponent<BoxCollider>().isTrigger = false;
     }
+    public bool isAttacking()
+    {
+
+        return (anim.GetCurrentAnimatorClipInfo(0)[0].clip.name.Contains("Attack"));
+
+    }
 
 }

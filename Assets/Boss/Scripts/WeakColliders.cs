@@ -6,13 +6,15 @@ public class WeakColliders : MonoBehaviour {
 
 	// Use this for initialization
     // Use this for initialization
-    string compareTag = "Target";
+    string compareTag = "Axe";
     private GameObject boss;
+    private Kratos kratos_btates;
     private BossScript bossScript;
     public string weakPoint;
     void Start()
     {
         boss = GameObject.FindGameObjectWithTag("Boss");
+        kratos_btates = GameObject.FindGameObjectWithTag("Target").GetComponent<Kratos>();
         bossScript = boss.GetComponent<BossScript>();
     }
 
@@ -21,9 +23,9 @@ public class WeakColliders : MonoBehaviour {
     {
 
     }
-    void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (collision.collider.CompareTag(compareTag))
+        if (collision.CompareTag(compareTag) && kratos_btates.isAttacking())
         {
             bossScript.onHit(weakPoint);
         }

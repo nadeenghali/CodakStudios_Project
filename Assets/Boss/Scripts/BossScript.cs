@@ -15,7 +15,7 @@ public class BossScript : MonoBehaviour {
     public GameObject[] enemy;
     public float waitTime = 5f;
     private float timer = 0f;
-    private string target = "Target";
+    private string target = "KratosPersonalSpace";
     public static bool inBossLevel = false ;
 
 	void Start () {
@@ -59,13 +59,19 @@ public class BossScript : MonoBehaviour {
     void NormalHit()
     {
         HealthPoints = (int) (HealthPoints * 0.95);
+        if (HealthPoints <= 0)
+            Die();
     }
     void WeakHit()
     {
         HealthPoints = (int)(HealthPoints * 0.80);
+        if (HealthPoints <= 0)
+            Die();
+
     }
     public void onHit(string collision)
     {
+        print(HealthPoints);
         if (!bossActions.isAttacking())
         {
             switch (collision)
@@ -148,6 +154,7 @@ public class BossScript : MonoBehaviour {
     void Die()
     {
         bossActions.toggleParams("Die");
+        bossActions.setDead();
     }
 
     private void OnTriggerEnter(Collider other)
