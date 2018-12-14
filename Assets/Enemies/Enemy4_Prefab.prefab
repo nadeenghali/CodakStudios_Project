@@ -425,10 +425,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4732478692364382}
   - component: {fileID: 95676867864864164}
-  - component: {fileID: 114399654269468536}
   - component: {fileID: 114439249260747316}
   - component: {fileID: 64454299036430180}
   - component: {fileID: 54969496410948612}
+  - component: {fileID: 114498836703333652}
   m_Layer: 0
   m_Name: Enemy4_Prefab
   m_TagString: Untagged
@@ -2008,17 +2008,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114399654269468536
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1475202860418644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74b47bdca5c4eb6478c5fe52ff21819d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114439249260747316
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2032,6 +2021,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightDamage: 0
   heavyDamage: 0
+--- !u!114 &114498836703333652
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1475202860418644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8390812a23eb21448b0d640585b85d60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 1288214462405546, guid: 28542f043cce6234ca774b69abd86188,
+    type: 2}
 --- !u!137 &137693142751099166
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

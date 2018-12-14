@@ -28,7 +28,7 @@ public class Kratos : MonoBehaviour
 
 
         //Jump
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && !KratosLogic.isDead)
         {
             if (anim.GetBool("Jump"))
             {
@@ -48,7 +48,8 @@ public class Kratos : MonoBehaviour
 
         //Waking to the sides
         if ((!(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))) &&
-            (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow)))
+            (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
+            && !KratosLogic.isDead)
         {
 
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
@@ -93,7 +94,8 @@ public class Kratos : MonoBehaviour
 
         //Waking
         if ((!(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))) &&
-            (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow)))
+            (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow))
+            && !KratosLogic.isDead)
         {
 
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
@@ -140,7 +142,8 @@ public class Kratos : MonoBehaviour
 
         //Running
         if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) &&
-            (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow)))
+            (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow))
+            && !KratosLogic.isDead)
         {
 
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
@@ -197,7 +200,7 @@ public class Kratos : MonoBehaviour
 
 
         //got hit
-        if (KratosLogic.gotHit && !KratosLogic.gotKilled) 
+        if (KratosLogic.gotHit && !KratosLogic.isDead) 
         {
             anim.SetBool("Hit_React", true);
             KratosLogic.gotHit = false;
@@ -208,7 +211,7 @@ public class Kratos : MonoBehaviour
         }
 
         //Heavy Attack
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1) && !KratosLogic.isDead)
         {
             anim.SetBool("Attack_360", true);
             KratosLogic.heavyAttack = true;
@@ -223,7 +226,7 @@ public class Kratos : MonoBehaviour
         }
 
         //Light Attack
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && !KratosLogic.isDead)
         {
             anim.SetBool("Attack_Horizontal", true);
             KratosLogic.lightAttack = true;
@@ -237,7 +240,7 @@ public class Kratos : MonoBehaviour
         }
 
         //Rage
-        if (Input.GetKeyDown(KeyCode.R) && KratosLogic.canRageAttack)
+        if (Input.GetKeyDown(KeyCode.R) && KratosLogic.canRageAttack && !KratosLogic.isDead)
         {
             anim.SetBool("Rage", true);
             KratosLogic.rageMode = true;
@@ -248,7 +251,7 @@ public class Kratos : MonoBehaviour
         }
 
         //Acrobatic Move
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && !KratosLogic.isDead)
         {
             anim.SetBool("Flip", true);
         }
@@ -258,7 +261,7 @@ public class Kratos : MonoBehaviour
         }
 
         //Block
-        if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
+        if ((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) && !KratosLogic.isDead)
         {
             anim.SetBool("Block", true);
             KratosLogic.isBlocking = true;
