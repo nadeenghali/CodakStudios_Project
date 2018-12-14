@@ -119,7 +119,7 @@ ModelImporter:
     400110: Spine1
     400112: Spine2
     400114: //RootNode
-    7400000: mixamo.com
+    7400000: Walking
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -150,7 +150,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: mixamo.com
+      name: Walking
       takeName: mixamo.com
       firstFrame: 0
       lastFrame: 42

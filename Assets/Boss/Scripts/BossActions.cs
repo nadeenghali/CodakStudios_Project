@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BossActions : MonoBehaviour {
-public GameObject boss;
 private AnimatorControllerParameter[] animParams;
 private Animator animator;
 
@@ -24,13 +23,11 @@ public static string ReactionToGut = "ReactionToGut";
 
 	// Use this for initialization
 	void Start () {
-        boss = gameObject;
         animator = gameObject.GetComponent<Animator>();
         int animCount = animator.parameterCount;
         animParams = new AnimatorControllerParameter[animCount]; 
         for(int i = 0 ; i < animCount ; i ++ ){
             animParams[i] = animator.GetParameter(i);
-            print(animParams[i].name);
         }
 	}
 	
@@ -40,7 +37,12 @@ public static string ReactionToGut = "ReactionToGut";
 	}
     public bool isAttacking()
     {
-        return animator.GetBool(MagicAttack1) || animator.GetBool(MagicAttack2) || animator.GetBool(MagicAttack3); 
+
+        return (animator.GetCurrentAnimatorClipInfo(0)[0].clip.name.Contains("Dive")) ||
+               (animator.GetCurrentAnimatorClipInfo(0)[0].clip.name.Contains("Attack")) ||
+               (animator.GetCurrentAnimatorClipInfo(0)[0].clip.name.Contains("Power")) ||
+               (animator.GetCurrentAnimatorClipInfo(0)[0].clip.name.Contains("Kick"));
+
     }
     public void toggleParams(string action)
     {
@@ -55,6 +57,22 @@ public static string ReactionToGut = "ReactionToGut";
                 animator.SetBool(animParams[i].name, false);
             }
         }
+
         
+    }
+    public bool isSecondAttackChoosen()
+    {
+        return animator.GetBool(MagicAttack2);
+    }
+    public void DoADive()
+    {
+        animator.SetBool(Dive, true);
+    }
+    public void Idle()
+    {
+        for (int i = 0; i < animParams.Length; i++)
+        {
+                animator.SetBool(animParams[i].name, false);
+        }
     }
 }
