@@ -3,6 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour {
+    public AudioSource effectKratosWalking1;
+    public AudioSource effectEnemyWalking1;
+
+    public AudioSource feedbackKratosHit1;
+    public AudioSource feedbackKratosDied1;
+    public AudioSource feedbackEnemyHit1;
+    public AudioSource feedbackEnemyDied1;
+    public AudioSource feedbackKratosCollect1;
+    public AudioSource feedbackKratosRage1;
+
     public static AudioSource effectKratosWalking;
     public static AudioSource effectEnemyWalking;
 
@@ -13,6 +23,18 @@ public class AudioManager : MonoBehaviour {
     public static AudioSource feedbackKratosCollect;
     public static AudioSource feedbackKratosRage;
 
+    void start()
+    {
+        effectKratosWalking = effectKratosWalking1;
+        effectEnemyWalking = effectEnemyWalking1;
+        feedbackKratosHit = feedbackKratosHit1;
+        feedbackKratosDied = feedbackKratosDied1;
+        feedbackKratosCollect = feedbackKratosCollect1;
+        feedbackKratosRage = feedbackKratosRage1;
+        feedbackEnemyHit = feedbackEnemyHit1;
+        feedbackEnemyDied = feedbackEnemyDied1;
+
+    }
     //Kratos effect
     public static void startKratosWalking()
     {

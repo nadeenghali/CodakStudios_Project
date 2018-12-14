@@ -4,7 +4,6 @@ using UnityEngine.AI;
 
 public class EnemyOne : MonoBehaviour {
 
-
     private NavMeshAgent agent;
     private Transform target;
 
@@ -14,6 +13,7 @@ public class EnemyOne : MonoBehaviour {
     float timeToAttack = 3f;
 
     bool walking = false;
+    bool dead = false;
 
     public static bool canAttack = false;
     public static bool gotHit;
@@ -21,9 +21,11 @@ public class EnemyOne : MonoBehaviour {
     public float lightDamage;
     public float heavyDamage;
 
+    int EnemyDieTime = 5;
 
     // Use this for initialization
     void Start () {
+        this.gameObject.GetComponent<NavMeshAgent>().enabled = true;
         Kratos = GameObject.FindGameObjectWithTag("Kratos");
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
@@ -112,9 +114,6 @@ public class EnemyOne : MonoBehaviour {
         //KratosLogic.EnemyDead();
 
         Destroy(this.gameObject);
-        KratosLogic.XP = KratosLogic.XP + 50;
-        if (KratosLogic.XP > KratosLogic.maxXP)
-            KratosLogic.XP = KratosLogic.maxXP;
     }
 
     private void OnTriggerExit(Collider other)
@@ -126,6 +125,7 @@ public class EnemyOne : MonoBehaviour {
     }
     public void SetTarget(Transform pos)
     {
+        if(!dead)
         agent.destination = pos.position;
     }
     void CheckIfDead()
@@ -133,7 +133,7 @@ public class EnemyOne : MonoBehaviour {
         if (enemyHealthPoints <= 0)
         {
 
-            Invoke("DestroyEnemy", 3);
+            Invoke("DestroyEnemy", EnemyDieTime);
 
         }
     }
@@ -154,11 +154,16 @@ public class EnemyOne : MonoBehaviour {
 
     public void Dead()
     {
-        if (EnemyLogic.enemyHealthPoints <= 0)
+        if (enemyHealthPoints <= 0)
         {
+            AudioManager.playEnemyDies();
+            this.gameObject.GetComponent<BoxCollider>().enabled = false;
+            this.gameObject.GetComponent<NavMeshAgent>().enabled = false;
+            dead = true;
             anim.SetBool("timeToAttack", false);
             anim.SetBool("Die", true);
             anim.SetBool("Hit", false);
+            KratosLogic.enemyDead  = true;
         }
     }
 
@@ -175,6 +180,7 @@ public class EnemyOne : MonoBehaviour {
         {
             if (timeToAttack > 0 && EnemyLogic.enemyHealthPoints > 0)
             {
+                AudioManager.startEnemyWalking();
                 anim.SetBool("Running", true);
                 anim.SetBool("timeToAttack", false);
                 anim.SetBool("Die", false);
@@ -187,10 +193,12 @@ public class EnemyOne : MonoBehaviour {
     {
         if (EnemyLogic.gotHit)
         {
+            AudioManager.playEnemyIsHit();
             anim.SetBool("timeToAttack", false);
             anim.SetBool("Die", false);
             anim.SetBool("Hit", true);
             EnemyLogic.gotHit = false;
+            KratosLogic.enemyHit = true;
         }
     }
 
@@ -198,6 +206,9 @@ public class EnemyOne : MonoBehaviour {
     {
         if (walking)
         {
+            AudioManager.stopEnemyWalking();
+            HanleSpeechChange.startSpeechEnemyDetectsKratos();
+
             anim.SetBool("Running", false);
         }
     }

@@ -161,8 +161,8 @@ public class KratosLogic : MonoBehaviour {
             if (XP >= maxXP)
                 XP = maxXP;
         }
-        gameScreenSkills.text = "Skill Points :  " + skillPoints;
-        upgradeScreenSkills.text = "Skill Points :  " + skillPoints;
+        //gameScreenSkills.text = "Skill Points :  " + skillPoints;
+        //upgradeScreenSkills.text = "Skill Points :  " + skillPoints;
     }
 
 
