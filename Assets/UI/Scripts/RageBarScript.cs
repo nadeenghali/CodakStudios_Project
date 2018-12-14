@@ -5,14 +5,12 @@ using UnityEngine.UI;
 
 public class RageBarScript : MonoBehaviour {
 
-    float myRage;
-    float myMinRage;
-
-    float difference;
     int counter;
 
     //CHEAT KEYS
     float xPos;
+    float yPos;
+
     float w;
 
     float increase;
@@ -20,15 +18,12 @@ public class RageBarScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
-        myRage = KratosLogic.rage;
-        myMinRage = KratosLogic.minRage;
-
-        difference = 0;
         counter = 0;
 
         //CHEAT KEYS
         xPos = this.GetComponent<RectTransform>().position.x;
+        yPos = this.GetComponent<RectTransform>().position.y;
+
         w = this.GetComponent<RectTransform>().rect.width;
 
         increase = 5;
@@ -40,31 +35,21 @@ public class RageBarScript : MonoBehaviour {
     {
         if (KratosLogic.rageMode)
         {
-            difference = 5;
-            difference = -(difference/2);
+            if (KratosLogic.rage == 0)
+            {
+                KratosLogic.rageMode = false;
+            }
 
             if (counter < 20)
             {
                 Invoke("InRageModeDecrement", 1);
                 counter++;
-            }
-
-            if(myRage == 0)
-            {
-                KratosLogic.rage = 0;
-                KratosLogic.rageMode = false;
-            }
+            } 
         }
         else
         {
-            difference = myRage - KratosLogic.rage;
-            if (difference != 0)
-            {
-                difference = -(difference / 2);
-                this.GetComponent<RectTransform>().sizeDelta = new Vector2(KratosLogic.rage, this.GetComponent<RectTransform>().sizeDelta.y);
-                this.GetComponent<RectTransform>().Translate(new Vector3(difference, 0, 0));
-            }
-            myRage = KratosLogic.rage;
+            this.GetComponent<RectTransform>().sizeDelta = new Vector2(KratosLogic.rage, this.GetComponent<RectTransform>().sizeDelta.y);
+            this.GetComponent<RectTransform>().position = new Vector3(60 + ((KratosLogic.rage * 50) / KratosLogic.maxRage), yPos, 0);
         }
 
 
@@ -112,10 +97,9 @@ public class RageBarScript : MonoBehaviour {
 
     public void InRageModeDecrement()
     {
-        myRage = myRage - difference;
-        KratosLogic.rage = myRage;
+        KratosLogic.rage = KratosLogic.rage - 5;
 
         this.GetComponent<RectTransform>().sizeDelta = new Vector2(KratosLogic.rage, this.GetComponent<RectTransform>().sizeDelta.y);
-        this.GetComponent<RectTransform>().Translate(new Vector3(difference, 0, 0));
+        this.GetComponent<RectTransform>().position = new Vector3(60 + ((KratosLogic.rage * 50) / KratosLogic.maxRage), yPos, 0);
     }
 }

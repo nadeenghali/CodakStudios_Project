@@ -8,7 +8,6 @@ public class ResumeScript : MonoBehaviour {
 
     public void Resume()
     {
-        //and add anything that we change when we resume or pause
         Time.timeScale = 1;
         PauseScript.paused = false;
 
