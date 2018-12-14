@@ -44,6 +44,9 @@ public class KratosLogic : MonoBehaviour {
     public static bool levelUp;
     public static bool gameWon;
 
+    public static bool enemyHit;
+    public static bool enemyDead;
+
 	// Use this for initialization
 	void Start () {
         level = 1;
@@ -78,7 +81,7 @@ public class KratosLogic : MonoBehaviour {
         levelUp = false;
         gameWon = false;
     }
-	
+
 	// Update is called once per frame
 	void Update () {
 
@@ -87,7 +90,7 @@ public class KratosLogic : MonoBehaviour {
             gotKilled = true;
             isDead = true;
             //wait 5 seconds to call GameOver();
-            Invoke("GameOver", 5);    
+            Invoke("GameOver", 5);
         }
 
         if (XP >= maxXP)
@@ -137,23 +140,45 @@ public class KratosLogic : MonoBehaviour {
             gameWon = false;
         }
 
-        //gameScreenSkills.text = "Skill Points :  " + skillPoints;
-        //upgradeScreenSkills.text = "Skill Points :  " + skillPoints;
-    }
-
-    public static void EnemyDead()
-    {
-        if (!rageMode)
+        if (enemyHit)
         {
-            rage = rage + 20;
-            if (rage > maxRage)
+            if (!rageMode)
             {
-                rage = maxRage;
+                rage = rage + 20;
+                if (rage > maxRage)
+                {
+                    rage = maxRage;
+                }
             }
+            enemyHit = false;
         }
 
-        deadEnemies = deadEnemies + 1;
+        if (enemyDead)
+        {
+            deadEnemies = deadEnemies + 1;
+            enemyDead = false;
+            XP = XP + 50;
+            if (XP >= maxXP)
+                XP = maxXP;
+        }
+        gameScreenSkills.text = "Skill Points :  " + skillPoints;
+        upgradeScreenSkills.text = "Skill Points :  " + skillPoints;
     }
+
+
+    //public static void EnemyDead()
+    //{
+    //    if (!rageMode)
+    //    {
+    //        rage = rage + 20;
+    //        if (rage > maxRage)
+    //        {
+    //            rage = maxRage;
+    //        }
+    //    }
+
+    //    deadEnemies = deadEnemies + 1;
+    //}
 
     public void GameOver()
     {
@@ -180,6 +205,17 @@ public class KratosLogic : MonoBehaviour {
     {
         // Move player to next level (physically) -- shazly
         level = level++;
+
+        if(level == 2)
+        {
+            //level 2 positions
+        }
+
+        if(level == 3)
+        {
+            //level 3 positions
+        }
+
         deadEnemies = 0;
 
         canRageAttack = false;

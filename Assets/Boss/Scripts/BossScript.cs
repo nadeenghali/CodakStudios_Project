@@ -35,6 +35,7 @@ public class BossScript : MonoBehaviour {
         if (agent.speed>0){
             bossActions.toggleParams(BossActions.Walking);
 
+
         }
      
         else
@@ -80,6 +81,7 @@ public class BossScript : MonoBehaviour {
     }
     public void onHit(string collision,bool rage)
     {
+
         if (rage)
         {
             damageScale = 2;
@@ -90,6 +92,7 @@ public class BossScript : MonoBehaviour {
         }
         if (!bossActions.isAttacking())
         {
+            AudioManager.playEnemyIsHit();
             switch (collision)
             {
                 case "Head": onHittingWeakPointTwo(); break;
@@ -172,6 +175,9 @@ public class BossScript : MonoBehaviour {
         bossActions.toggleParams("Die");
         bossActions.setDead();
         KratosLogic.gameWon = true;
+        AudioManager.playEnemyDies();
+
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -180,7 +186,7 @@ public class BossScript : MonoBehaviour {
         {
             agent.speed = 0.0f;
             timer = 4.5f;
-            
+            HanleSpeechChange.startSpeechEnemyDetectsKratos();
         }
     }
 

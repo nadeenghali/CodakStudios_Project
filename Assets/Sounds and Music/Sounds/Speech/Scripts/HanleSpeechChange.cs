@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HanleSpeechChange : MonoBehaviour {
-    public AudioSource speechEnemyDetectsKratos;
+    public static AudioSource speechEnemyDetectsKratos;
     
-    public void startSpeechEnemyDetectsKratos()
+    public static void  startSpeechEnemyDetectsKratos()
     {
         speechEnemyDetectsKratos.Play();
     }
-    public void stopSpeechEnemyDetectsKratos()
+    public static void stopSpeechEnemyDetectsKratos()
     {
         speechEnemyDetectsKratos.Stop();
     }

@@ -11,11 +11,6 @@ public class RageBarScript : MonoBehaviour {
     float xPos;
     float yPos;
 
-    float w;
-
-    float increase;
-    float decrease;
-
     // Use this for initialization
     void Start () {
         counter = 0;
@@ -23,11 +18,6 @@ public class RageBarScript : MonoBehaviour {
         //CHEAT KEYS
         xPos = this.GetComponent<RectTransform>().position.x;
         yPos = this.GetComponent<RectTransform>().position.y;
-
-        w = this.GetComponent<RectTransform>().rect.width;
-
-        increase = 5;
-        decrease = 5;
     }
 
     // Update is called once per frame
@@ -52,45 +42,36 @@ public class RageBarScript : MonoBehaviour {
             this.GetComponent<RectTransform>().position = new Vector3(60 + ((KratosLogic.rage * 50) / KratosLogic.maxRage), yPos, 0);
         }
 
+        //CHEAT KEY 5 -> increase rage by 20
+        //CHEAT KEY 6 -> decrease rage by 20
 
-        //CHEAT KEYS
-        w = this.GetComponent<RectTransform>().rect.width;
-
-        //increase health
+        //increase rage by 20
         if (Input.GetKeyUp(KeyCode.Alpha5))
         {
-            if (w != 100)
+            if(KratosLogic.rage + 20 <= 100)
             {
-                w = w + increase;
-
-                if (w > 100)
-                {
-                    w = 100;
-                }
-
-                xPos = (increase / 2);
-
-                this.GetComponent<RectTransform>().sizeDelta = new Vector2(w, this.GetComponent<RectTransform>().sizeDelta.y);
-                this.GetComponent<RectTransform>().Translate(new Vector3(xPos, 0, 0));
+                this.GetComponent<RectTransform>().sizeDelta = new Vector2(KratosLogic.rage + 20, this.GetComponent<RectTransform>().sizeDelta.y);
+                this.GetComponent<RectTransform>().position = new Vector3(60 + (((KratosLogic.rage +20) * 50) / KratosLogic.maxRage), yPos, 0);
+            }
+            else
+            {
+                this.GetComponent<RectTransform>().sizeDelta = new Vector2(KratosLogic.maxRage , this.GetComponent<RectTransform>().sizeDelta.y);
+                this.GetComponent<RectTransform>().position = new Vector3(60 + (((KratosLogic.maxRage) * 50) / KratosLogic.maxRage), yPos, 0);
             }
         }
 
-        //decrease health
+        //decrease rage by 20 
         if (Input.GetKeyUp(KeyCode.Alpha6))
         {
-            if (w != 0)
+            if (KratosLogic.rage - 20 >= 100)
             {
-                w = w - decrease;
-
-                if (w < 0)
-                {
-                    w = 0;
-                }
-
-                xPos = -(decrease / 2);
-
-                this.GetComponent<RectTransform>().sizeDelta = new Vector2(w, this.GetComponent<RectTransform>().sizeDelta.y);
-                this.GetComponent<RectTransform>().Translate(new Vector3(xPos, 0, 0));
+                this.GetComponent<RectTransform>().sizeDelta = new Vector2(KratosLogic.rage - 20, this.GetComponent<RectTransform>().sizeDelta.y);
+                this.GetComponent<RectTransform>().position = new Vector3(60 + (((KratosLogic.rage - 20) * 50) / KratosLogic.maxRage), yPos, 0);
+            }
+            else
+            {
+                this.GetComponent<RectTransform>().sizeDelta = new Vector2(0, this.GetComponent<RectTransform>().sizeDelta.y);
+                this.GetComponent<RectTransform>().position = new Vector3((60  / KratosLogic.maxRage), yPos, 0);
             }
         }
     }
