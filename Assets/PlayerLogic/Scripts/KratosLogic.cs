@@ -44,6 +44,9 @@ public class KratosLogic : MonoBehaviour {
     public static bool levelUp;
     public static bool gameWon;
 
+    public static bool enemyHit;
+    public static bool enemyDead;
+
 	// Use this for initialization
 	void Start () {
         level = 1;
@@ -137,23 +140,45 @@ public class KratosLogic : MonoBehaviour {
             gameWon = false;
         }
 
+        if (enemyHit)
+        {
+            if (!rageMode)
+            {
+                rage = rage + 20;
+                if (rage > maxRage)
+                {
+                    rage = maxRage;
+                }
+            }
+            enemyHit = false;
+        }
+
+        if (enemyDead)
+        {
+            deadEnemies = deadEnemies + 1;
+            enemyDead = false;
+            XP = XP + 50;
+            if (XP >= maxXP)
+                XP = maxXP;
+        }
         gameScreenSkills.text = "Skill Points :  " + skillPoints;
         upgradeScreenSkills.text = "Skill Points :  " + skillPoints;
     }
 
-    public static void EnemyDead()
-    {
-        if (!rageMode)
-        {
-            rage = rage + 20;
-            if (rage > maxRage)
-            {
-                rage = maxRage;
-            }
-        }
+    
+    //public static void EnemyDead()
+    //{
+    //    if (!rageMode)
+    //    {
+    //        rage = rage + 20;
+    //        if (rage > maxRage)
+    //        {
+    //            rage = maxRage;
+    //        }
+    //    }
 
-        deadEnemies = deadEnemies + 1;
-    }
+    //    deadEnemies = deadEnemies + 1;
+    //}
 
     public void GameOver()
     {
