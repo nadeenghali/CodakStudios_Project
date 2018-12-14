@@ -180,6 +180,17 @@ public class KratosLogic : MonoBehaviour {
     {
         // Move player to next level (physically) -- shazly
         level = level++;
+
+        if(level == 2)
+        {
+            //level 2 positions
+        }
+
+        if(level == 3)
+        {
+            //level 3 positions
+        }
+
         deadEnemies = 0;
 
         canRageAttack = false;

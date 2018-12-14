@@ -35,5 +35,19 @@ public class RestartLevelScript : MonoBehaviour {
         KratosLogic.levelUp = false;
         KratosLogic.gameWon = false;
         
+        if(KratosLogic.level == 1)
+        {
+            //level 1 position
+        }
+
+        if(KratosLogic.level == 2)
+        {
+            //level 2 position
+        }
+
+        if(KratosLogic.level == 3)
+        {
+            //level 3 position
+        }
     }
 }
