@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 54050371665053332}
   - component: {fileID: 208010178650320434}
   m_Layer: 0
-  m_Name: Custom_Kratos2
+  m_Name: Custom_Kratos
   m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

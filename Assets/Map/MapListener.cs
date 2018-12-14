@@ -82,8 +82,9 @@ public class MapListener : MonoBehaviour {
                     switch (wave)
                     {
                         case 1:
-                            Instantiate(EnemyOne, new Vector3(5.0f, 2.0f, 37.0f), Quaternion.identity);
-                            Instantiate(EnemyOne, new Vector3(4.0f, 2.0f, 42.0f), Quaternion.identity);
+                            Instantiate(EnemyThree, new Vector3(5.0f, 2.0f, 37.0f), Quaternion.identity);
+                            //Instantiate(EnemyOne, new Vector3(5.0f, 2.0f, 37.0f), Quaternion.identity);
+                            //Instantiate(EnemyTwo, new Vector3(4.0f, 2.0f, 42.0f), Quaternion.identity);
                             break;
                         case 2:
                             Instantiate(EnemyTwo, new Vector3(-11.0f, 1.8f, 10.0f), Quaternion.identity);

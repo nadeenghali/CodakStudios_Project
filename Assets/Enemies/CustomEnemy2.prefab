@@ -507,6 +507,7 @@ GameObject:
   - component: {fileID: 114558747963452848}
   - component: {fileID: 54641606738297556}
   - component: {fileID: 195982641423211394}
+  - component: {fileID: 114852047389279790}
   m_Layer: 0
   m_Name: CustomEnemy2
   m_TagString: Enemy
@@ -1204,7 +1205,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1688078737957516}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3197b7cb20eae2c42bff667cbd6a15a7, type: 3}
   m_Name: 
@@ -1217,11 +1218,24 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1688078737957516}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74b47bdca5c4eb6478c5fe52ff21819d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114852047389279790
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1688078737957516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07bef9b41b10c7d45ad39eff35d1e9ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightDamage: 0
+  heavyDamage: 0
 --- !u!135 &135255586915962876
 SphereCollider:
   m_ObjectHideFlags: 1
